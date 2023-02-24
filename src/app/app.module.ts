@@ -13,6 +13,7 @@ import { CondicionsComponent } from './condicions/condicions.component';
 import { LoginComponent } from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HttpClientModule} from "@angular/common/http";
+import { PerfilComponent } from './perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { HttpClientModule} from "@angular/common/http";
     CistellaComponent,
     CondicionsComponent,
     LoginComponent,
+    PerfilComponent,
   ],
   imports: [
     BrowserModule,

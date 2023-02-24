@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {RegisterLoginService} from "../register-login.service";
 import {Router} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-registre',
@@ -15,39 +15,15 @@ export class RegistreComponent {
   adreca: any;
   telefon: any;
 
-  autenticat = this.registraServei.autenticat
-  nomAutenticat = this.registraServei.nomAutenticat
-
-  tancarSessio(){
-    this.registraServei.autenticat = false;
-    this.registraServei.nomAutenticat = 'null';
-    this.autenticat= false;
-    this.nomAutenticat= 'null';
-  }
-
   registrar(){
-    let trobat = false;
-    for(let i = 0; i <= this.registraServei.correu_array.length; i++ ){
-      if (this.registraServei.correu_array[i]==this.correu){
-        trobat = true;
-        alert("Ja existeix un usuari amb aquest correu")
-        break;
-      }
-    }
-    if (trobat == false){
-    this.registraServei.correu_array.push(this.correu)
-    this.registraServei.passwd_array.push(this.passwd)
-    this.registraServei.nom_array.push(this.nom)
-    this.registraServei.cognoms_array.push(this.cognoms)
-    this.registraServei.adreca_array.push(this.adreca)
-    this.registraServei.tel_array.push(this.telefon)
-
     this.router.navigate(['/login'])
-    }
-
-
   }
-  constructor(private registraServei: RegisterLoginService,public router:Router) {
+
+  constructor(public router:Router, private http:HttpClient) {
+    this.http.get<any>('http://172.16.8.1:3080/api/firebase').subscribe((document)=>{
+      console.log(document);
+    });
+
   }
 
   ngOnInit(){}

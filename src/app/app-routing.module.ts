@@ -7,6 +7,7 @@ import { CistellaComponent } from './cistella/cistella.component';
 import {CondicionsComponent} from "./condicions/condicions.component";
 import {ContacteComponent} from "./contacte/contacte.component";
 import {LoginComponent} from "./login/login.component";
+import {PerfilComponent} from "./perfil/perfil.component";
 
 const routes: Routes = [
 
@@ -24,6 +25,8 @@ const routes: Routes = [
     component: ContacteComponent },
   { path: 'login',
     component: LoginComponent },
+  { path: 'perfil',
+    component: PerfilComponent},
 
 
 ];

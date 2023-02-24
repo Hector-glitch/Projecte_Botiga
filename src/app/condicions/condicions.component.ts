@@ -1,5 +1,4 @@
 import {Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
-import {RegisterLoginService} from "../register-login.service";
 
 @Component({
   selector: 'app-condicions',
@@ -7,8 +6,6 @@ import {RegisterLoginService} from "../register-login.service";
   styleUrls: ['./condicions.component.css','../../assets/css/Default.css']
 })
 export class CondicionsComponent {
-  autenticat = this.registraServei.autenticat
-  nomAutenticat = this.registraServei.nomAutenticat
   negre = true;
 
   // @ts-ignore
@@ -24,15 +21,7 @@ export class CondicionsComponent {
     }
   }
 
-  tancarSessio(){
-    this.registraServei.autenticat = false;
-    this.registraServei.nomAutenticat = 'null';
-    this.autenticat= false;
-    this.nomAutenticat= 'null';
-    console.log("funciona clic")
-  }
-
-  constructor(private registraServei: RegisterLoginService, private render: Renderer2) {
+  constructor(private render: Renderer2) {
   }
 
 }

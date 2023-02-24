@@ -8,10 +8,10 @@
 <body>
 <header>
   <div id="loginbar">
-    <a *ngIf="!autenticat" class="ab-item" id="login" routerLink="/login" routerLinkActive="active">Inicia la sessió</a>
-    <select *ngIf="autenticat" name="logout" id="logout">
-      <option selected hidden>Hola, {{nomAutenticat}}</option>
-      <option (click)="tancarSessio()">Tancar sessió</option>
+    <a class="ab-item" id="login" routerLink="/login" routerLinkActive="active">Inicia la sessió</a>
+    <select name="logout" id="logout">
+      <option selected hidden>Hola, </option>
+      <option>Tancar sessió</option>
     </select>
   </div>
   <a routerLink="/" routerLinkActive="active"><img id="title" src="assets/images/LogoWeb2.png"></a>
@@ -23,6 +23,7 @@
   <a routerLink="/cistella" routerLinkActive="active">Cistella</a>
   <a routerLink="/condicions" routerLinkActive="active">Condicions</a>
   <a routerLink="/contacte" routerLinkActive="active">Contacte</a>
+  <a routerLink="/perfil" routerLinkActive="active">Perfil</a>
 </nav>
 <div class="respmenu">
   <input type="checkbox">

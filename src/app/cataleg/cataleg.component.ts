@@ -1,5 +1,4 @@
 import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
-import {RegisterLoginService} from "../register-login.service";
 import { Product, products } from '../products';
 import { CartService } from '../cistella.service';
 
@@ -11,8 +10,6 @@ import { CartService } from '../cistella.service';
 
 export class CatalegComponent  {
   products = products;
-  autenticat = this.registraServei.autenticat
-  nomAutenticat = this.registraServei.nomAutenticat
   clicatE: any;
   clicatM: any;
 
@@ -35,20 +32,8 @@ export class CatalegComponent  {
     else(this.render.addClass(this.manual.nativeElement,'manu'))
   }
 
-
-
-
-  tancarSessio() {
-    this.registraServei.autenticat = false;
-    this.registraServei.nomAutenticat = 'null';
-    this.autenticat = false;
-    this.nomAutenticat = 'null';
-    console.log("funciona clic")
+  constructor(private cartService: CartService, private render: Renderer2) {
   }
-  constructor(private registraServei: RegisterLoginService,
-              private cartService: CartService, private render: Renderer2) {
-  }
-
 
   addToCart(product: Product) {
     this.cartService.addToCart(product);

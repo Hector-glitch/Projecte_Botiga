@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {RegisterLoginService} from "../register-login.service";
 import { FormBuilder } from '@angular/forms';
 import { CartService } from '../cistella.service';
 
@@ -12,22 +11,8 @@ import { CartService } from '../cistella.service';
 export class CistellaComponent {
   items = this.cartService.getItems();
   checkoutForm = this.formBuilder.group({});
-  autenticat = this.registraServei.autenticat
-  nomAutenticat = this.registraServei.nomAutenticat
-  cognomsAutenticat = this.registraServei.cognomsAutenticat
-  adrecaAutenticat = this.registraServei.adrecaAutenticat
 
-  tancarSessio(){
-    this.registraServei.autenticat = false;
-    this.registraServei.nomAutenticat = 'null';
-    this.autenticat= false;
-    this.nomAutenticat= 'null';
-    console.log("funciona clic")
-  }
-
-  constructor(private registraServei: RegisterLoginService,
-  private cartService: CartService,
-  private formBuilder: FormBuilder) {
+  constructor(private cartService: CartService, private formBuilder: FormBuilder) {
   }
 
   onSubmit(): void {
