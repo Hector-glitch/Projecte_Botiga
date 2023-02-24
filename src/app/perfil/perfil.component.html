@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Cataleg</title>
+  <title>Book.net</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-  <link rel="stylesheet" href="cataleg.component.css">
 </head>
 <body>
 <header>
@@ -15,7 +14,7 @@
       <option (click)="tancarSessio()">Tancar sessió</option>
     </select>
   </div>
-  <a routerLink="/" routerLinkActive="active"><img id="title" src="assets/images/LogoWeb2.png" alt=""></a>
+  <a routerLink="/" routerLinkActive="active"><img id="title" src="assets/images/LogoWeb2.png"></a>
 </header>
 <nav id="menu">
   <a routerLink="/" routerLinkActive="active">Home</a>
@@ -42,54 +41,6 @@
   </nav>
 </div>
 <hr>
-<div class="filtres">
 
-  <ul>
-    <li>
-      <input [checked]="true" [(ngModel)]="clicatE" (change)="catEntretenir()" id="entretenir" type="checkbox"/>
-      <label for="entretenir">Entreteniment</label>
-    </li>
-    <li>
-      <input [checked]="true" [(ngModel)]="clicatM" (change)="catManuals()"  id="Manuals" type="checkbox"/>
-      <label for="Manuals">Manuals</label>
-    </li>
-  </ul>
-
-</div>
-
-<div #entretenir>
-  <div  *ngFor="let product of products" class="producte">
-    <div *ngIf="product.cat=='Entreteniment'">
-    <h3>
-      <div *ngIf="product">
-        <img src="{{product.img}}" alt="" class="img-pro">
-        <h4>{{ product.name }} <br> {{ product.desc }}</h4>
-        <h3>Preu: {{ product.preu}} €</h3>
-      </div>
-    </h3>
-    <button class="BotoCompra" (click)="addToCart(product)">Comprar</button>
-    </div>
-  </div>
-</div>
-
-
-<div #manual>
-  <div  *ngFor="let product of products" class="producte">
-    <div *ngIf="product.cat=='Manuals'">
-      <h3>
-        <div *ngIf="product">
-          <img src="{{product.img}}" alt="" class="img-pro">
-          <h4>{{ product.name }} <br> {{ product.desc }}</h4>
-          <h3>Preu: {{ product.preu}} €</h3>
-        </div>
-      </h3>
-      <button class="BotoCompra" (click)="addToCart(product)">Comprar</button>
-    </div>
-  </div>
-</div>
-
-<footer>
-  <iframe src="assets/html/Footer.html"></iframe>
-</footer>
 </body>
 </html>

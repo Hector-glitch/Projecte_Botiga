@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import {RegisterLoginService} from "../register-login.service";
 import {Router} from "@angular/router";
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +14,7 @@ export class LoginComponent {
   autenticar(){
     let trobat = false;
     let posicio = 0;
-    for(let i = 0; i <= this.registraServei.correu_array.length; i++ ){
+    for(let i = 0; i <= this.registraServei.correu_array.length; i++){
       if (this.registraServei.correu_array[i]==this.email){
 
         trobat = true;

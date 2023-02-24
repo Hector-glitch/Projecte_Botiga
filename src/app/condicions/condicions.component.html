@@ -24,6 +24,7 @@
   <a routerLink="/cistella" routerLinkActive="active">Cistella</a>
   <a routerLink="/condicions" routerLinkActive="active">Condicions</a>
   <a routerLink="/contacte" routerLinkActive="active">Contacte</a>
+  <a *ngIf="autenticat" routerLink="/perfil" routerLinkActive="active">Perfil</a>
 </nav>
 <div class="respmenu">
   <input type="checkbox">

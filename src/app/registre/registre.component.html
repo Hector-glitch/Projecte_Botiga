@@ -23,6 +23,7 @@
   <a routerLink="/cistella" routerLinkActive="active">Cistella</a>
   <a routerLink="/condicions" routerLinkActive="active">Condicions</a>
   <a routerLink="/contacte" routerLinkActive="active">Contacte</a>
+  <a *ngIf="autenticat" routerLink="/Perfil" routerLinkActive="active">Perfil</a>
 </nav>
 <div class="respmenu">
   <input type="checkbox">
@@ -74,13 +75,10 @@
       <label for="telefon"><b>Telèfon</b></label>
       <input [(ngModel)]="telefon"  [ngModelOptions]="{standalone: true}" type="tel" id="telefon" placeholder="Telèfon" pattern="[0-9]{9}" required>
     </div>
-
     <button type="submit" >Registra't</button>
     <button type="reset">Neteja</button>
-
   </form>
 </div>
-
 <footer>
   <iframe src="assets/html/Footer.html"></iframe>
 </footer>
