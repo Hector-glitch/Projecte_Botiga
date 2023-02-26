@@ -8,6 +8,8 @@ import {CondicionsComponent} from "./condicions/condicions.component";
 import {ContacteComponent} from "./contacte/contacte.component";
 import {LoginComponent} from "./login/login.component";
 import {PerfilComponent} from "./perfil/perfil.component";
+import {CanviarpasswordComponent} from "./canviarpassword/canviarpassword.component";
+
 
 const routes: Routes = [
 
@@ -27,6 +29,8 @@ const routes: Routes = [
     component: LoginComponent },
   { path: 'perfil',
     component: PerfilComponent},
+  { path: 'canviarpasswd',
+    component: CanviarpasswordComponent}
 
 
 ];

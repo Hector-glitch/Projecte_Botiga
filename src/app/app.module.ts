@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HttpClientModule} from "@angular/common/http";
 import { PerfilComponent } from './perfil/perfil.component';
+import { CanviarpasswordComponent } from './canviarpassword/canviarpassword.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { PerfilComponent } from './perfil/perfil.component';
     CondicionsComponent,
     LoginComponent,
     PerfilComponent,
+    CanviarpasswordComponent,
   ],
   imports: [
     BrowserModule,
