@@ -1,0 +1,9 @@
+*{
+  background-color: black;
+}
+h1, p{
+  color: white;
+}
+p{
+  margin-left: 30px;
+}

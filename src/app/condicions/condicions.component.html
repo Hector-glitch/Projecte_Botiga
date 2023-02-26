@@ -9,10 +9,11 @@
 <header>
   <div id="loginbar">
     <button (click)="canviarFons()">☀ / 🌙</button>
-    <a class="ab-item" id="login" routerLink="/login" routerLinkActive="active">Inicia la sessió</a>
-    <select name="logout" id="logout">
-      <option selected hidden>Hola, </option>
-      <option>Tancar sessió</option>
+    <a *ngIf="!autenticat"  class="ab-item" id="login" routerLink="/login" routerLinkActive="active">Inicia la sessió</a>
+    <select *ngIf="autenticat" name="logout" id="logout">
+      <option selected hidden>Hola, {{nomAutenticat}}</option>
+      <option routerLink="/perfil">El meu perfil</option>
+      <option (click)="tancarSessio()">Tancar sessió</option>
     </select>
   </div>
   <a routerLink="/" routerLinkActive="active"><img id="title" src="assets/images/LogoWeb2.png"></a>
@@ -20,11 +21,10 @@
 <nav id="menu">
   <a routerLink="/" routerLinkActive="active">Home</a>
   <a routerLink="/cataleg" routerLinkActive="active">Catàleg</a>
-  <a routerLink="/registre" routerLinkActive="active">Registre Client</a>
+  <a *ngIf="!autenticat" routerLink="/registre" routerLinkActive="active">Registre Client</a>
   <a routerLink="/cistella" routerLinkActive="active">Cistella</a>
   <a routerLink="/condicions" routerLinkActive="active">Condicions</a>
   <a routerLink="/contacte" routerLinkActive="active">Contacte</a>
-  <a routerLink="/perfil" routerLinkActive="active">Perfil</a>
 </nav>
 <div class="respmenu">
   <input type="checkbox">
@@ -34,7 +34,7 @@
     <ul>
       <li><a routerLink="/" routerLinkActive="active">Home</a></li>
       <li><a routerLink="/cataleg" routerLinkActive="active">Catàleg</a></li>
-      <li><a routerLink="/registre" routerLinkActive="active">Registre Client</a></li>
+      <li><a *ngIf="!autenticat" routerLink="/registre" routerLinkActive="active">Registre Client</a></li>
       <li><a routerLink="/cistella" routerLinkActive="active">Cistella</a></li>
       <li><a routerLink="/condicions" routerLinkActive="active">Condicions</a></li>
       <li><a routerLink="/contacte" routerLinkActive="active">Contacte</a></li>

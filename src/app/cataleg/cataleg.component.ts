@@ -1,6 +1,7 @@
 import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
 import { Product, products } from '../products';
 import { CartService } from '../cistella.service';
+import {UsuariService} from "../usuari.service";
 
 @Component({
   selector: 'app-cataleg',
@@ -9,14 +10,23 @@ import { CartService } from '../cistella.service';
 })
 
 export class CatalegComponent  {
+  autenticat= this.usuariServei.autenticat;
+  nomAutenticat: any;
   products = products;
   clicatE: any;
   clicatM: any;
+
+
 
   // @ts-ignore
   @ViewChild('manual') manual: ElementRef;
   // @ts-ignore
   @ViewChild('entretenir') entretenir: ElementRef;
+  tancarSessio(){
+    this.usuariServei.autenticat = false;
+    this.autenticat= false;
+    this.nomAutenticat= 'null';
+  }
   catEntretenir(){
     if(this.clicatE){
       this.render.removeClass(this.entretenir.nativeElement,'entrete')
@@ -32,7 +42,10 @@ export class CatalegComponent  {
     else(this.render.addClass(this.manual.nativeElement,'manu'))
   }
 
-  constructor(private cartService: CartService, private render: Renderer2) {
+  constructor(private usuariServei: UsuariService, private cartService: CartService, private render: Renderer2) {
+    if(this.autenticat){
+      this.nomAutenticat = this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Nom;
+    }
   }
 
   addToCart(product: Product) {
