@@ -26,8 +26,8 @@ export class RegistreComponent {
     this.nomAutenticat= 'null';
   }
   registrar(){
-    this.http.post<any>('http://localhost:3080/datausers',{Adreça:this.adreca,Cognoms:this.cognoms,Correu:this.correu,Nom:this.nom,Telèfon:this.telefon}).subscribe();
-    this.http.post<any>('http://localhost:3080/signup', {email:this.correu, password: this.passwd}).subscribe();
+    this.http.post<any>('http://172.16.8.1:3080/datausers',{Adreça:this.adreca,Cognoms:this.cognoms,Correu:this.correu,Nom:this.nom,Telèfon:this.telefon}).subscribe();
+    this.http.post<any>('http://172.16.8.1:3080/signup', {email:this.correu, password: this.passwd}).subscribe();
     this.router.navigate(['/login'])
   }
 
