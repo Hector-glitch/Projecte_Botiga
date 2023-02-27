@@ -35,7 +35,18 @@ export class CatalegComponent  {
     else(this.render.addClass(this.manual.nativeElement,'manu'))
   }
 
-
+  transform(value: any[], filterString: string, propName:string): any[] {
+    const result:any =[];
+    if(!value || filterString==='' || propName === ''){
+      return value;
+    }
+    value.forEach((a:any)=>{
+      if(a[propName].trim().toLowerCase().include(filterString.toLowerCase())){
+        result.push(a);
+    }
+    });
+    return result;
+  }
 
 
   tancarSessio() {
