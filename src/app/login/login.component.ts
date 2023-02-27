@@ -4,6 +4,7 @@ import {HttpClient} from "@angular/common/http";
 import * as Console from "console";
 import {UsuariService} from "../usuari.service";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
+import {user} from "@angular/fire/auth";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -27,18 +28,17 @@ export class LoginComponent {
         this.correuTrobat = false;
         for (let i = 0; i<this.usuariServei.arrClients.clients.length;i++){
           if(this.usuariServei.arrClients.clients[i].Correu == this.email){
-            this.usuariServei.posAutenticat = i;
-            this.correuTrobat = true;
-            this.router.navigate(['/'])
+              this.usuariServei.posAutenticat = i;
+              this.correuTrobat = true;
+              this.router.navigate(['/'])
           }
         }
         if(!this.correuTrobat){
-          alert("Sembla que no disposem de les dades d'aquest client!")
+          alert("Sembla que no disposem de les dades d'aquest client!");
         }
-
       })
     if (!this.usuariServei.autenticat) {
-      alert("Correu i/o contrasenya incorrectes!")
+      alert("Correu i/o contrasenya incorrectes!");
     }
   }
 

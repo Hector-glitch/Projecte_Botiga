@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {UsuariService} from "../usuari.service";
+import {AngularFireAuth} from "@angular/fire/compat/auth";
+import {sendEmailVerification} from "@angular/fire/auth";
 
 @Component({
   selector: 'app-registre',
@@ -29,7 +31,7 @@ export class RegistreComponent {
     this.router.navigate(['/login'])
   }
 
-  constructor(private usuariServei: UsuariService,public router:Router, private http:HttpClient) {
+  constructor(private usuariServei: UsuariService,public router:Router, private http:HttpClient, public firebaseAuth: AngularFireAuth) {
     if(this.autenticat){
       this.nomAutenticat = this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Nom;
     }
