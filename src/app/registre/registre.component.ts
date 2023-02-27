@@ -46,7 +46,7 @@ export class RegistreComponent {
         email: this.correu,
         password: this.passwd
       }).subscribe();
-      this.router.navigate(['/login'])
+      this.router.navigate(['/login']);
     }
   }
 
