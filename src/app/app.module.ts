@@ -14,7 +14,7 @@ import { LoginComponent } from './login/login.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HttpClientModule} from "@angular/common/http";
 import { PerfilComponent } from './perfil/perfil.component';
-import { VerificarComponent } from './verificar/verificar.component';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +27,6 @@ import { VerificarComponent } from './verificar/verificar.component';
     CondicionsComponent,
     LoginComponent,
     PerfilComponent,
-    VerificarComponent,
   ],
   imports: [
     BrowserModule,

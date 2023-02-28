@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {RegisterLoginService} from "../register-login.service";
 import {Router} from "@angular/router";
 
+
 @Component({
   selector: 'app-registre',
   templateUrl: './registre.component.html',
@@ -41,7 +42,7 @@ export class RegistreComponent {
     this.registraServei.cognoms_array.push(this.cognoms)
     this.registraServei.adreca_array.push(this.adreca)
     this.registraServei.tel_array.push(this.telefon)
-
+      window.alert(`S'ha enviat un correu de verificacio.`)
     this.router.navigate(['/login'])
     }
 
