@@ -46,6 +46,7 @@ export class RegistreComponent {
         email: this.correu,
         password: this.passwd
       }).subscribe();
+      window.alert(`S'ha enviat un correu per verificar la seva compte.`)
       this.router.navigate(['/login']);
     }
   }
