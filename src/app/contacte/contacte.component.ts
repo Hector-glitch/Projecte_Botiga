@@ -10,6 +10,9 @@ export class ContacteComponent implements AfterViewInit{
   autenticat = this.registraServei.autenticat
   nomAutenticat = this.registraServei.nomAutenticat
   correuAutenticat = this.registraServei.correuAutenticat
+  nomFormulari: any;
+  correuFormulari: any;
+  missatgeFormulari: any;
 
   // @ts-ignore
   @ViewChild('omplenaCorreu') omplenaCorreu: ElementRef;
@@ -30,6 +33,10 @@ export class ContacteComponent implements AfterViewInit{
     this.autenticat= false;
     this.nomAutenticat= 'null';
     console.log("funciona clic")
+  }
+
+  enviaFormulari(){
+    alert("Enviat!")
   }
 
   constructor(private registraServei: RegisterLoginService) {
