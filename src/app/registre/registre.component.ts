@@ -3,7 +3,6 @@ import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {UsuariService} from "../usuari.service";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
-import {sendEmailVerification} from "@angular/fire/auth";
 
 @Component({
   selector: 'app-registre',
@@ -26,28 +25,29 @@ export class RegistreComponent {
     this.autenticat= false;
     this.nomAutenticat= 'null';
   }
-  registrar(){
-    for (let i = 0; i<this.usuariServei.arrClients.clients.length;i++){
-      if(this.usuariServei.arrClients.clients[i].Correu == this.correu){
+  async registrar() {
+    for (let i = 0; i < this.usuariServei.arrClients.clients.length; i++) {
+      if (this.usuariServei.arrClients.clients[i].Correu == this.correu) {
         this.correuTrobat = true;
       }
     }
-    if (this.correuTrobat){
+    if (this.correuTrobat) {
       alert("Ja existeix un usuari registrat amb aquest correu!")
-    }else {
-      this.http.post<any>('http://172.16.8.1:3080/datausers', {
+    } else {
+      this.http.post<any>('http://localhost:3080/datausers', {
         Adreça: this.adreca,
         Cognoms: this.cognoms,
         Correu: this.correu,
         Nom: this.nom,
         Telèfon: this.telefon
       }).subscribe();
-      this.http.post<any>('http://172.16.8.1:3080/signup', {
+      this.http.post<any>('http://localhost:3080/signup', {
         email: this.correu,
         password: this.passwd
       }).subscribe();
+
       window.alert(`S'ha enviat un correu per verificar la seva compte.`)
-      this.router.navigate(['/login']);
+      await this.router.navigate(['/login']);
     }
   }
 

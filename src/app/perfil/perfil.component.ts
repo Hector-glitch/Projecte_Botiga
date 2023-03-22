@@ -77,7 +77,7 @@ export class PerfilComponent{
       this.correu=this.correuAutenticat;
       this.telefon=this.telefonAutenticat;
     }else{
-      //this.router.navigate(['/']);
+      this.router.navigate(['/']);
     }
 
 
