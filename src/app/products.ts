@@ -12,7 +12,7 @@ export const products= [
     name:"Bola de drac",
     desc:"Primera edicio",
     preu: 10.30,
-    img: "assets/images/BolaDeDrac01.jpg",
+    img: "http://172.16.8.1:3080/imatges/BolaDeDrac01.jpg",
     qty: 1,
     cat: "Entreteniment"
   },
@@ -20,7 +20,7 @@ export const products= [
     name:"Narnia",
     desc:"Primera edicio",
     preu: 11.30,
-    img: "assets/images/Narnia.jpg",
+    img: "http://172.16.8.1:3080/imatges/Narnia.jpg",
     qty: 1,
     cat: "Entreteniment"
   },
@@ -28,7 +28,7 @@ export const products= [
     name:"Boku no Hero Academia",
     desc:"Primera edicio",
     preu: 7.55,
-    img: "assets/images/BNHA.png",
+    img: "http://172.16.8.1:3080/imatges/BNHA.png",
     qty: 1,
     cat: "Entreteniment"
   },
@@ -36,7 +36,7 @@ export const products= [
     name:"Los pilares de la Tierra",
     desc:"Primera edicio",
     preu: 11.30,
-    img: "assets/images/PilaresTierra.png",
+    img: "http://172.16.8.1:3080/imatges/PilaresTierra.png",
     qty: 1,
     cat: "Entreteniment"
   },
@@ -44,7 +44,7 @@ export const products= [
     name:"Guia Basica de Minecraft",
     desc:"",
     preu: 15.89,
-    img: "assets/images/GuiaMine.png",
+    img: "http://172.16.8.1:3080/imatges/GuiaMine.png",
     qty: 1,
     cat: "Manuals"
   },
@@ -52,7 +52,7 @@ export const products= [
     name:"La cocina de la abuela",
     desc:"",
     preu: 18.30,
-    img: "assets/images/LlibreCuina.png",
+    img: "http://172.16.8.1:3080/imatges/LlibreCuina.png",
     qty: 1,
     cat: "Manuals"
   },
@@ -60,7 +60,7 @@ export const products= [
     name:"El señor de los anillos",
     desc:"Primera edicio",
     preu: 17.95,
-    img: "assets/images/SeñorAnillos.jpg",
+    img: "http://172.16.8.1:3080/imatges/SeñorAnillos.jpg",
     qty: 1,
     cat: "Entreteniment"
   },
@@ -68,7 +68,7 @@ export const products= [
     name:"Como provocar un incendio",
     desc:"",
     preu: 9.49,
-    img: "assets/images/ComoIncendiar.jpg",
+    img: "http://172.16.8.1:3080/imatges/ComoIncendiar.jpg",
     qty: 1,
     cat: "Manuals"
   }
