@@ -1,6 +1,6 @@
 import {Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
-import {RegisterLoginService} from "../register-login.service";
 import {elementAt} from "rxjs";
+import {UsuariService} from "../usuari.service";
 
 @Component({
   selector: 'app-inici',
@@ -8,17 +8,17 @@ import {elementAt} from "rxjs";
   styleUrls: ['./inici.component.css','../../assets/css/Default.css']
 })
 export class IniciComponent {
-  autenticat = this.registraServei.autenticat
-  nomAutenticat = this.registraServei.nomAutenticat
+  nomAutenticat: any;
+  autenticat = this.usuariServei.autenticat;
 
   tancarSessio(){
-    this.registraServei.autenticat = false;
-    this.registraServei.nomAutenticat = 'null';
+    this.usuariServei.autenticat = false;
     this.autenticat= false;
     this.nomAutenticat= 'null';
-    console.log("funciona clic")
   }
-
-  constructor(private registraServei: RegisterLoginService, private renderer: Renderer2) {
+  constructor(private renderer: Renderer2,private usuariServei: UsuariService) {
+    if(this.autenticat){
+      this.nomAutenticat = this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Nom;
+    }
   }
 }

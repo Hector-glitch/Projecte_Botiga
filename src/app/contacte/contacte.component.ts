@@ -1,15 +1,15 @@
 import {AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import {RegisterLoginService} from "../register-login.service";
+import {UsuariService} from "../usuari.service";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-contacte',
   templateUrl: './contacte.component.html',
   styleUrls: ['./contacte.component.css', '../../assets/css/Default.css']
 })
-export class ContacteComponent implements AfterViewInit{
-  autenticat = this.registraServei.autenticat
-  nomAutenticat = this.registraServei.nomAutenticat
-  correuAutenticat = this.registraServei.correuAutenticat
+export class ContacteComponent{
+  autenticat= this.usuariServei.autenticat;
+  nomAutenticat: any;
   nomFormulari: any;
   correuFormulari: any;
   missatgeFormulari: any;
@@ -18,27 +18,26 @@ export class ContacteComponent implements AfterViewInit{
   @ViewChild('omplenaCorreu') omplenaCorreu: ElementRef;
   // @ts-ignore
   @ViewChild('omplenaNom') omplenaNom: ElementRef;
-  ngAfterViewInit() {
-    if(this.autenticat){
-      this.omplenaNom.nativeElement.value = this.nomAutenticat;
-      this.omplenaCorreu.nativeElement.value = this.correuAutenticat;
-    }
-  }
-
-
-
   tancarSessio(){
-    this.registraServei.autenticat = false;
-    this.registraServei.nomAutenticat = 'null';
+    this.usuariServei.autenticat = false;
     this.autenticat= false;
     this.nomAutenticat= 'null';
-    console.log("funciona clic")
   }
-
   enviaFormulari(){
-    alert("Enviat!")
+    this.http.post<any>('http://172.16.8.1:3080/contacte',{
+      nom: this.nomFormulari,
+      correu: this.correuFormulari,
+      missatge: this.missatgeFormulari
+    }).subscribe();
+    alert("Enviat!");
+    this.nomFormulari = '';
+    this.correuFormulari = '';
+    this.missatgeFormulari = '';
   }
 
-  constructor(private registraServei: RegisterLoginService) {
+  constructor(private usuariServei: UsuariService,private http:HttpClient) {
+    if(this.autenticat){
+      this.nomAutenticat = this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Nom;
+    }
   }
 }

@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
-import {RegisterLoginService} from "../register-login.service";
 import {Router} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
+import * as Console from "console";
+import {UsuariService} from "../usuari.service";
+import {AngularFireAuth} from "@angular/fire/compat/auth";
+import {sendEmailVerification, user} from "@angular/fire/auth";
+import firebase from "firebase/compat";
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,38 +16,39 @@ export class LoginComponent {
   [x: string]: any;
   email: any;
   passwd: any;
+  correuTrobat: any;
 
-  autenticar(){
-    let trobat = false;
-    let posicio = 0;
-    for(let i = 0; i <= this.registraServei.correu_array.length; i++){
-      if (this.registraServei.correu_array[i]==this.email){
-
-        trobat = true;
-        posicio = i
-      }
-    }
-    if (trobat == false){
-      alert("Usuari o contrasenya incorrectes")
-
-    }
-    else if (trobat == true){
-      if(this.registraServei.passwd_array[posicio]==this.passwd){
-        this.registraServei.autenticat = true;
-        this.registraServei.nomAutenticat = this.registraServei.nom_array[posicio];
-        this.registraServei.correuAutenticat = this.registraServei.correu_array[posicio];
-        this.registraServei.adrecaAutenticat = this.registraServei.adreca_array[posicio];
-        this.registraServei.cognomsAutenticat = this.registraServei.cognoms_array[posicio];
-        this.registraServei.telAutenticat = this.registraServei.tel_array[posicio];
-        this.router.navigate(['/'])
-
-      }
-      else alert("Usuari o contrasenya incorrectes")
-    }
-
-
+  constructor(public router:Router, private usuariServei: UsuariService, public firebaseAuth: AngularFireAuth) {
   }
-  constructor(private registraServei: RegisterLoginService,public router:Router) {
+
+  async autenticar() {
+    var errorMessage = ' ';
+
+    await this.firebaseAuth.signInWithEmailAndPassword(this.email, this.passwd)
+      .then(res => {
+        this.usuariServei.autenticat = true;
+        this.usuariServei.usuari = JSON.stringify(res.user);
+        this.usuariServei.correuAutenticat = this.email;
+        this.correuTrobat = false;
+
+        for (let i = 0; i < this.usuariServei.arrClients.clients.length; i++) {
+          if (this.usuariServei.arrClients.clients[i].Correu == this.email) {
+            this.usuariServei.posAutenticat = i;
+            this.correuTrobat = true;
+            //this.router.navigate(['/'])
+          }
+        }
+        if (!this.correuTrobat) {
+          alert("Sembla que no disposem de les dades d'aquest client!");
+        }
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        errorMessage= error.message;
+      })
+    if (!this.usuariServei.autenticat) {
+      alert("Entrada denegada!\n" + errorMessage);
+    }
   }
 }
 

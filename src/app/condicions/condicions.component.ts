@@ -1,5 +1,5 @@
 import {Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
-import {RegisterLoginService} from "../register-login.service";
+import {UsuariService} from "../usuari.service";
 
 @Component({
   selector: 'app-condicions',
@@ -7,12 +7,17 @@ import {RegisterLoginService} from "../register-login.service";
   styleUrls: ['./condicions.component.css','../../assets/css/Default.css']
 })
 export class CondicionsComponent {
-  autenticat = this.registraServei.autenticat
-  nomAutenticat = this.registraServei.nomAutenticat
+  autenticat= this.usuariServei.autenticat;
+  nomAutenticat: any;
   negre = true;
 
   // @ts-ignore
   @ViewChild('fons') fons: ElementRef;
+  tancarSessio(){
+    this.usuariServei.autenticat = false;
+    this.autenticat= false;
+    this.nomAutenticat= 'null';
+  }
   canviarFons(){
     if(this.negre){
       this.render.addClass(this.fons.nativeElement,'canviarColor')
@@ -24,15 +29,10 @@ export class CondicionsComponent {
     }
   }
 
-  tancarSessio(){
-    this.registraServei.autenticat = false;
-    this.registraServei.nomAutenticat = 'null';
-    this.autenticat= false;
-    this.nomAutenticat= 'null';
-    console.log("funciona clic")
-  }
-
-  constructor(private registraServei: RegisterLoginService, private render: Renderer2) {
+  constructor(private usuariServei: UsuariService, private render: Renderer2) {
+    if(this.autenticat){
+      this.nomAutenticat = this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Nom;
+    }
   }
 
 }

@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
-import {RegisterLoginService} from "../register-login.service";
 import { Product, products } from '../products';
 import { CartService } from '../cistella.service';
+import {UsuariService} from "../usuari.service";
 
 @Component({
   selector: 'app-cataleg',
@@ -10,9 +10,9 @@ import { CartService } from '../cistella.service';
 })
 
 export class CatalegComponent  {
+  autenticat= this.usuariServei.autenticat;
+  nomAutenticat: any;
   products = products;
-  autenticat = this.registraServei.autenticat
-  nomAutenticat = this.registraServei.nomAutenticat
   clicatE: any;
   clicatM: any;
 
@@ -20,6 +20,11 @@ export class CatalegComponent  {
   @ViewChild('manual') manual: ElementRef;
   // @ts-ignore
   @ViewChild('entretenir') entretenir: ElementRef;
+  tancarSessio(){
+    this.usuariServei.autenticat = false;
+    this.autenticat= false;
+    this.nomAutenticat= 'null';
+  }
   catEntretenir(){
     if(this.clicatE){
       this.render.removeClass(this.entretenir.nativeElement,'entrete')
@@ -35,29 +40,10 @@ export class CatalegComponent  {
     else(this.render.addClass(this.manual.nativeElement,'manu'))
   }
 
-  transform(value: any[], filterString: string, propName:string): any[] {
-    const result:any =[];
-    if(!value || filterString==='' || propName === ''){
-      return value;
+  constructor(private usuariServei: UsuariService, private cartService: CartService, private render: Renderer2) {
+    if(this.autenticat){
+      this.nomAutenticat = this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Nom;
     }
-    value.forEach((a:any)=>{
-      if(a[propName].trim().toLowerCase().include(filterString.toLowerCase())){
-        result.push(a);
-    }
-    });
-    return result;
-  }
-
-
-  tancarSessio() {
-    this.registraServei.autenticat = false;
-    this.registraServei.nomAutenticat = 'null';
-    this.autenticat = false;
-    this.nomAutenticat = 'null';
-    console.log("funciona clic")
-  }
-  constructor(private registraServei: RegisterLoginService,
-              private cartService: CartService, private render: Renderer2) {
   }
 
 

@@ -11,6 +11,7 @@
     <a *ngIf="!autenticat" class="ab-item" id="login" routerLink="/login" routerLinkActive="active">Inicia la sessió</a>
     <select *ngIf="autenticat" name="logout" id="logout">
       <option selected hidden>Hola, {{nomAutenticat}}</option>
+      <option routerLink="/perfil">El meu perfil</option>
       <option (click)="tancarSessio()">Tancar sessió</option>
     </select>
   </div>
@@ -68,7 +69,7 @@
 
     <div class="inputDiv">
       <label for="contrasenya"><b>Contrasenya</b></label>
-      <input [(ngModel)]="passwd" [ngModelOptions]="{standalone: true}" type="password" id="contrasenya" placeholder="Contrasenya" required>
+      <input [(ngModel)]="passwd" [ngModelOptions]="{standalone: true}" type="password" id="contrasenya" placeholder="Contrasenya" pattern="(?=^.{6,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required>
     </div>
 
     <div class="inputDiv">

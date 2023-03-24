@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import {RegisterLoginService} from "../register-login.service";
 import { FormBuilder } from '@angular/forms';
 import { CartService } from '../cistella.service';
+import {UsuariService} from "../usuari.service";
 
 
 @Component({
@@ -10,26 +10,21 @@ import { CartService } from '../cistella.service';
   styleUrls: ['./cistella.component.css','../../assets/css/Default.css']
 })
 export class CistellaComponent {
+  autenticat= this.usuariServei.autenticat;
+  nomAutenticat: any;
   items = this.cartService.getItems();
   checkoutForm = this.formBuilder.group({});
-  autenticat = this.registraServei.autenticat
-  nomAutenticat = this.registraServei.nomAutenticat
-  cognomsAutenticat = this.registraServei.cognomsAutenticat
-  adrecaAutenticat = this.registraServei.adrecaAutenticat
 
+  constructor(private usuariServei: UsuariService, private cartService: CartService, private formBuilder: FormBuilder) {
+    if(this.autenticat){
+      this.nomAutenticat = this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Nom;
+    }
+  }
   tancarSessio(){
-    this.registraServei.autenticat = false;
-    this.registraServei.nomAutenticat = 'null';
+    this.usuariServei.autenticat = false;
     this.autenticat= false;
     this.nomAutenticat= 'null';
-    console.log("funciona clic")
   }
-
-  constructor(private registraServei: RegisterLoginService,
-  private cartService: CartService,
-  private formBuilder: FormBuilder) {
-  }
-
   onSubmit(): void {
     // Process checkout data here
     this.items = this.cartService.clearItems();

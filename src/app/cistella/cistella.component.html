@@ -13,6 +13,7 @@
     <a *ngIf="!autenticat" class="ab-item" id="login" routerLink="/login" routerLinkActive="active">Inicia la sessió</a>
     <select *ngIf="autenticat" name="logout" id="logout">
       <option selected hidden>Hola, {{nomAutenticat}}</option>
+      <option routerLink="/perfil">El meu perfil</option>
       <option (click)="tancarSessio()">Tancar sessió</option>
     </select>
   </div>
@@ -21,7 +22,7 @@
 <nav id="menu">
   <a routerLink="/" routerLinkActive="active">Home</a>
   <a routerLink="/cataleg" routerLinkActive="active">Catàleg</a>
-  <a routerLink="/registre" routerLinkActive="active">Registre Client</a>
+  <a *ngIf="!autenticat" routerLink="/registre" routerLinkActive="active">Registre Client</a>
   <a routerLink="/cistella" routerLinkActive="active">Cistella</a>
   <a routerLink="/condicions" routerLinkActive="active">Condicions</a>
   <a routerLink="/contacte" routerLinkActive="active">Contacte</a>
@@ -35,7 +36,7 @@
     <ul>
       <li><a routerLink="/" routerLinkActive="active">Home</a></li>
       <li><a routerLink="/cataleg" routerLinkActive="active">Catàleg</a></li>
-      <li><a routerLink="/registre" routerLinkActive="active">Registre Client</a></li>
+      <li><a *ngIf="!autenticat" routerLink="/registre" routerLinkActive="active">Registre Client</a></li>
       <li><a routerLink="/cistella" routerLinkActive="active">Cistella</a></li>
       <li><a routerLink="/condicions" routerLinkActive="active">Condicions</a></li>
       <li><a routerLink="/contacte" routerLinkActive="active">Contacte</a></li>
@@ -63,16 +64,13 @@
 </article>
 <aside>
   <label for="nom">Nom:</label><br>
-  <input *ngIf="!autenticat" type="text" id="nom" name="nom">
-  <input *ngIf="autenticat" type="text" id="nom" name="nom" value="{{this.nomAutenticat}}">
+  <input type="text" id="nom" name="nom">
   <br>
   <label for="cognom">Cognom:</label><br>
-  <input *ngIf="!autenticat" type="text" id="cognom" name="cognom">
-  <input *ngIf="autenticat" type="text" id="cognom" name="cognom" value="{{this.cognomsAutenticat}}">
+  <input type="text" id="cognom" name="cognom">
   <br>
   <label for="adreç">Adreça:</label><br>
-  <input *ngIf="!autenticat" type="text" id="adreç" name="adreç">
-  <input *ngIf="autenticat" type="text" id="adreç" name="adreç" value="{{this.adrecaAutenticat}}">
+  <input type="text" id="adreç" name="adreç">
   <br>
   <label for="TarC">Numero arjeta de credit:</label><br>
   <input type="text" id="TarC" name="TarC">
