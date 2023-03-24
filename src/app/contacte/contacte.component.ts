@@ -1,5 +1,6 @@
 import {AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import {UsuariService} from "../usuari.service";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-contacte',
@@ -9,6 +10,9 @@ import {UsuariService} from "../usuari.service";
 export class ContacteComponent{
   autenticat= this.usuariServei.autenticat;
   nomAutenticat: any;
+  nomFormulari: any;
+  correuFormulari: any;
+  missatgeFormulari: any;
 
   // @ts-ignore
   @ViewChild('omplenaCorreu') omplenaCorreu: ElementRef;
@@ -19,7 +23,19 @@ export class ContacteComponent{
     this.autenticat= false;
     this.nomAutenticat= 'null';
   }
-  constructor(private usuariServei: UsuariService) {
+  enviaFormulari(){
+    this.http.post<any>('http://172.16.8.1:3080/contacte',{
+      nom: this.nomFormulari,
+      correu: this.correuFormulari,
+      missatge: this.missatgeFormulari
+    }).subscribe();
+    alert("Enviat!");
+    this.nomFormulari = '';
+    this.correuFormulari = '';
+    this.missatgeFormulari = '';
+  }
+
+  constructor(private usuariServei: UsuariService,private http:HttpClient) {
     if(this.autenticat){
       this.nomAutenticat = this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Nom;
     }
