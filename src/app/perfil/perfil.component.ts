@@ -9,7 +9,7 @@ import {HttpClient} from "@angular/common/http";
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css', '../../assets/css/Default.css']
 })
-export class PerfilComponent{
+export class PerfilComponent {
   nomAutenticat: any;
   cognomsAutenticat: any;
   adrecaAutenticat: any;
@@ -23,20 +23,23 @@ export class PerfilComponent{
   telefon: any;
   autenticat = this.usuariServei.autenticat;
   edita = false;
-  tancarSessio(){
+
+  tancarSessio() {
     this.usuariServei.autenticat = false;
-    this.autenticat= false;
-    this.nomAutenticat= 'null';
-    this.cognomsAutenticat='null';
-    this.adrecaAutenticat='null';
-    this.correuAutenticat='null';
-    this.telefonAutenticat='null';
+    this.autenticat = false;
+    this.nomAutenticat = 'null';
+    this.cognomsAutenticat = 'null';
+    this.adrecaAutenticat = 'null';
+    this.correuAutenticat = 'null';
+    this.telefonAutenticat = 'null';
     this.router.navigate(['/']);
   }
-  editaDades(){
+
+  editaDades() {
     this.edita = true;
   }
-  enviaDades(){
+
+  enviaDades() {
     this.http.post<any>('http://172.16.8.1:3080/datausersdelete', {
       Adreça: this.adrecaAutenticat,
       Cognoms: this.cognomsAutenticat,
@@ -62,25 +65,23 @@ export class PerfilComponent{
     this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Adreça = this.adrecaAutenticat;
     this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Correu = this.correuAutenticat;
     this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Telèfon = this.telefonAutenticat;
-    this.edita= false;
+    this.edita = false;
   }
-  constructor(private renderer: Renderer2, public router:Router, private usuariServei: UsuariService, private http:HttpClient) {
-    if(this.autenticat){
+
+  constructor(private renderer: Renderer2, public router: Router, private usuariServei: UsuariService, private http: HttpClient) {
+    if (this.autenticat) {
       this.nomAutenticat = this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Nom;
       this.cognomsAutenticat = this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Cognoms;
       this.adrecaAutenticat = this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Adreça;
       this.correuAutenticat = this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Correu;
       this.telefonAutenticat = this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Telèfon;
-      this.nom=this.nomAutenticat;
-      this.cognoms=this.cognomsAutenticat;
-      this.adreca=this.adrecaAutenticat;
-      this.correu=this.correuAutenticat;
-      this.telefon=this.telefonAutenticat;
-    }else{
+      this.nom = this.nomAutenticat;
+      this.cognoms = this.cognomsAutenticat;
+      this.adreca = this.adrecaAutenticat;
+      this.correu = this.correuAutenticat;
+      this.telefon = this.telefonAutenticat;
+    } else {
       this.router.navigate(['/']);
     }
-
-
-
   }
 }
