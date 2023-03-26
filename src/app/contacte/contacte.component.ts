@@ -13,6 +13,7 @@ export class ContacteComponent{
   nomFormulari: any;
   correuFormulari: any;
   missatgeFormulari: any;
+  captchaVerificat=false;
 
   // @ts-ignore
   @ViewChild('omplenaCorreu') omplenaCorreu: ElementRef;
@@ -22,6 +23,17 @@ export class ContacteComponent{
     this.usuariServei.autenticat = false;
     this.autenticat= false;
     this.nomAutenticat= 'null';
+  }
+  onVerify(token: string) {
+    this.captchaVerificat=true;
+  }
+
+  onExpired(response: any) {
+    alert("La verificació ha caducat!")
+  }
+
+  onError(error: any) {
+    alert("No 'ha pogut verificar correctament el captcha!")
   }
   enviaFormulari(){
     this.http.post<any>('http://172.16.8.1:3080/contacte',{

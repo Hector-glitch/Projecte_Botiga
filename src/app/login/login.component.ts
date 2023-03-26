@@ -18,7 +18,7 @@ export class LoginComponent {
   passwd: any;
   correuTrobat: any;
 
-  constructor(public router:Router, private usuariServei: UsuariService, public firebaseAuth: AngularFireAuth) {
+  constructor(public router:Router, private usuariServei: UsuariService,private http:HttpClient, public firebaseAuth: AngularFireAuth) {
   }
 
   async autenticar() {
@@ -35,7 +35,11 @@ export class LoginComponent {
           if (this.usuariServei.arrClients.clients[i].Correu == this.email) {
             this.usuariServei.posAutenticat = i;
             this.correuTrobat = true;
-            //this.router.navigate(['/'])
+            this.http.post<any>('http://localhost:3080/log',{
+              log: 'login',
+              text: `Ha iniciat sessió un usuari amb l'adreça de correu ${this.email}`
+            }).subscribe();
+            this.router.navigate(['/'])
           }
         }
         if (!this.correuTrobat) {

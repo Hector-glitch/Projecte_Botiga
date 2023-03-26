@@ -76,7 +76,13 @@
       <label for="telefon"><b>Telèfon</b></label>
       <input [(ngModel)]="telefon"  [ngModelOptions]="{standalone: true}" type="tel" id="telefon" placeholder="Telèfon" pattern="[0-9]{9}" required>
     </div>
-    <button type="submit" >Registra't</button>
+    <br>
+    <ng-hcaptcha theme="dark"
+                 (verify)="onVerify($event)"
+                 (expired)="onExpired($event)"
+                 (error)="onError($event)">
+    </ng-hcaptcha>
+    <button *ngIf="captchaVerificat" type="submit" >Registra't</button>
     <button type="reset">Neteja</button>
   </form>
 </div>

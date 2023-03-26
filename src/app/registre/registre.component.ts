@@ -19,11 +19,23 @@ export class RegistreComponent {
   adreca: any;
   telefon: any;
   correuTrobat: any;
+  captchaVerificat = false;
 
   tancarSessio(){
     this.usuariServei.autenticat = false;
     this.autenticat= false;
     this.nomAutenticat= 'null';
+  }
+  onVerify(token: string) {
+    this.captchaVerificat=true;
+  }
+
+  onExpired(response: any) {
+    alert("La verificació ha caducat!")
+  }
+
+  onError(error: any) {
+    alert("No 'ha pogut verificar correctament el captcha!")
   }
   async registrar() {
     for (let i = 0; i < this.usuariServei.arrClients.clients.length; i++) {
@@ -45,10 +57,9 @@ export class RegistreComponent {
         email: this.correu,
         password: this.passwd
       }).subscribe();
-      this.http.post<any>('http://172.16.8.1:3080/log',{
+      this.http.post<any>('http://localhost:3080/log',{
         log: 'registre',
-        nom: this.nom,
-        correu: this.correu
+        text: `${this.nom} s'ha registrat amb l'adreça de correu ${this.correu}`
       }).subscribe();
       window.alert(`S'ha enviat un correu per verificar la seva compte.`)
       await this.router.navigate(['/login']);

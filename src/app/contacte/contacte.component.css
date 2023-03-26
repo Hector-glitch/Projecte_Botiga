@@ -16,7 +16,7 @@ input, textarea{
   padding: 5px 5px;
   border: 1px solid orange;
   margin: 5px;
-
+  width: 285px;
 }
 textarea{
   height: 40px;

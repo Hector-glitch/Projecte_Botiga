@@ -16,6 +16,7 @@ input{
   padding: 5px 5px;
   border: 1px solid orange;
   margin: 5px;
+  width: 285px;
 }
 
 button{
@@ -39,7 +40,7 @@ form{
   border-radius: 8px;
   padding: 20px 40px;
   box-shadow: 0 0px 25px;
-  height: 400px;
+  height: 515px;
   text-align: left;
   float: left;
   margin-bottom: 20px;
@@ -54,4 +55,3 @@ input:focus{
   border-color: #dd801b;
 
 }
-

@@ -15,6 +15,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HttpClientModule} from "@angular/common/http";
 import { PerfilComponent } from './perfil/perfil.component';
 import { CanviarpasswordComponent } from './canviarpassword/canviarpassword.component';
+import { NgHcaptchaModule } from 'ng-hcaptcha';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,11 @@ import { CanviarpasswordComponent } from './canviarpassword/canviarpassword.comp
       messagingSenderId: "1004200328733",
       appId: "1:1004200328733:web:c3dc24caa99a9b98ef10f4",
       measurementId: "G-HH3JEHKSEK"
-    })
+    }),
+    NgHcaptchaModule.forRoot({
+      siteKey: '8f6ae743-c8d0-4c3b-bb0d-f42684acfdbc',
+      languageCode: 'ca',
+    }),
     ],
   providers: [],
   bootstrap: [AppComponent]

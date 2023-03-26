@@ -65,6 +65,10 @@ export class PerfilComponent {
     this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Adreça = this.adrecaAutenticat;
     this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Correu = this.correuAutenticat;
     this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Telèfon = this.telefonAutenticat;
+    this.http.post<any>('http://localhost:3080/log',{
+      log: 'perfil',
+      text: `L'usuari amb correu ${this.correu}, ha editat les dades del seu perfil`
+    }).subscribe();
     this.edita = false;
   }
 

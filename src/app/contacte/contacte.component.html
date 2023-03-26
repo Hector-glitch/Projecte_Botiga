@@ -62,8 +62,13 @@
       <label for="missatge"><b>Missatge</b></label>
       <textarea [(ngModel)]="missatgeFormulari" [ngModelOptions]="{standalone: true}" id="missatge" placeholder="Escriviu el vostre missatge aquí..." required></textarea>
     </div>
-
-    <button type="submit">Envia-ho!</button>
+    <br>
+    <ng-hcaptcha theme="dark"
+                 (verify)="onVerify($event)"
+                 (expired)="onExpired($event)"
+                 (error)="onError($event)">
+    </ng-hcaptcha>
+    <button *ngIf="captchaVerificat" type="submit" >Envia-ho!</button>
     <button type="reset">Neteja</button>
 
   </form>
