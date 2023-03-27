@@ -72,7 +72,6 @@ import {NgHcaptchaModule} from "ng-hcaptcha";
       languageCode: 'ca',
     }),NgHcaptchaModule.forRoot({
       siteKey: '8f6ae743-c8d0-4c3b-bb0d-f42684acfdbc',
-      languageCode: 'ca',
     }), NgbModule,
   ],
   providers: [],

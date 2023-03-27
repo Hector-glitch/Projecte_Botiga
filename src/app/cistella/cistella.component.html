@@ -102,7 +102,7 @@
   </div>
   <h3>Preu total:</h3>
   <h2> {{ calcTotal() }} € </h2>
-    <button class="button" type="submit">Finalitzar compra</button>
+    <button *ngIf="items.length !== 0"class="button" type="submit">Finalitzar compra</button>
   </form>
 </aside>
 <footer>

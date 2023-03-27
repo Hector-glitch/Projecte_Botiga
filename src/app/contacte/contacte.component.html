@@ -65,6 +65,7 @@
     </div>
     <br>
     <ng-hcaptcha theme="dark"
+                 languageCode="ca"
                  (verify)="onVerify($event)"
                  (expired)="onExpired($event)"
                  (error)="onError($event)">
