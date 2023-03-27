@@ -64,23 +64,24 @@
 
 </article>
 <aside>
+  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()" ngNativeValidate>
   <label for="nom">Nom:</label><br>
-  <input type="text" id="nom" name="nom">
+  <input [(ngModel)]="nomComprador" [ngModelOptions]="{standalone: true}" type="text" id="nom" name="nom" required>
   <br>
   <label for="cognom">Cognom:</label><br>
-  <input type="text" id="cognom" name="cognom">
+  <input [(ngModel)]="cognomComprador" [ngModelOptions]="{standalone: true}"  type="text" id="cognom" name="cognom" required>
   <br>
   <label for="adreç">Adreça:</label><br>
-  <input type="text" id="adreç" name="adreç">
+  <input [(ngModel)]="adrecaComprador" [ngModelOptions]="{standalone: true}" type="text" id="adreç" name="adreç" required>
   <br>
   <label for="TarC">Numero targeta de credit:</label><br>
-  <input type="text" id="TarC" name="TarC">
+  <input type="text" id="TarC" name="TarC" required>
   <br>
   <label for="caduca">Data caducacio targeta:</label><br>
-  <input type="date" id="caduca" name="Caduca">
+  <input type="date" id="caduca" name="Caduca" required>
   <br>
   <label>Tria el tpius d'enviament:</label><br>
-  <input type="radio" id="opcio1" name="enviament" value="Estàndard" (change)="actuEnviament('estandard')" >
+  <input type="radio" id="opcio1" name="enviament" value="Estàndard" (change)="actuEnviament('estandard')"  checked>
   <label for="opcio1">Estàndard</label><br>
   <input type="radio" id="opcio2" name="enviament" value="Premium" [(ngModel)]="enviamentPremium" (change)="actuEnviament('premium')">
   <label for="opcio2">Premium</label><br>
@@ -101,7 +102,6 @@
   </div>
   <h3>Preu total:</h3>
   <h2> {{ calcTotal() }} € </h2>
-  <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
     <button class="button" type="submit">Finalitzar compra</button>
   </form>
 </aside>

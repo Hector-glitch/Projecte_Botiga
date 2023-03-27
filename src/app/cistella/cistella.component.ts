@@ -3,6 +3,7 @@ import { FormBuilder } from '@angular/forms';
 import { CartService } from '../cistella.service';
 import {UsuariService} from "../usuari.service";
 import {NgbCalendar, NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
+import {HttpClient} from "@angular/common/http";
 
 
 @Component({
@@ -20,7 +21,11 @@ export class CistellaComponent {
   meridian = true;
   enviamentPremium = false;
   enviamentVIP = false;
-  constructor(private usuariServei: UsuariService, private cartService: CartService, private formBuilder: FormBuilder, private calendar: NgbCalendar, private render: Renderer2) {
+  nomComprador: any;
+  cognomComprador: any;
+  adrecaComprador: any;
+
+  constructor(private usuariServei: UsuariService, private cartService: CartService, private formBuilder: FormBuilder, private calendar: NgbCalendar, private render: Renderer2,private http:HttpClient,) {
     if(this.autenticat){
       this.nomAutenticat = this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Nom;
     }
@@ -32,6 +37,10 @@ export class CistellaComponent {
     this.nomAutenticat= 'null';
   }
   onSubmit(): void {
+    this.http.post<any>('http://172.16.8.1:3080/log',{
+      log: 'cistella',
+      text: `${this.nomComprador} ${this.cognomComprador} ha fet una compra de ${JSON.stringify(this.items)}`
+    }).subscribe();
     // Process checkout data here
     this.items = this.cartService.clearItems();
     console.warn('Your order has been submitted', this.checkoutForm.value);
