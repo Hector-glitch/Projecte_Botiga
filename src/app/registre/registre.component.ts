@@ -21,7 +21,6 @@ export class RegistreComponent {
   telefon: any;
   correuTrobat: any;
   captchaVerificat = false;
-  mostrarModal= false;
 
   tancarSessio(){
     this.usuariServei.autenticat = false;
