@@ -46,7 +46,6 @@ export class CatalegComponent  {
     }
   }
 
-
   addToCart(product: Product) {
     this.cartService.addToCart(product);
     window.alert(`${product.name} s'ha afegit a la cistella.`);

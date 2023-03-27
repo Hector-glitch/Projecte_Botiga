@@ -1,6 +1,6 @@
 import {Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
-import {elementAt} from "rxjs";
 import {UsuariService} from "../usuari.service";
+
 
 @Component({
   selector: 'app-inici',

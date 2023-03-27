@@ -68,9 +68,13 @@
                  (expired)="onExpired($event)"
                  (error)="onError($event)">
     </ng-hcaptcha>
-    <button *ngIf="captchaVerificat" type="submit" >Envia-ho!</button>
-    <button type="reset">Neteja</button>
-
+    <button *ngIf="captchaVerificat" type="submit" class="btn btn-outline-secondary" placement="left"
+            ngbPopover="En fer click a aquest botó, el teu missatge ens serà enviat, si us plau assegurat que les dades són
+            correctes per poder contactar amb tu si ens fos necessari." triggers="mouseenter:mouseleave" popoverTitle="Abans d'enviar" >Envia-ho!</button>
+    <button type="reset" class="btn btn-outline-secondary" placement="left"
+            ngbPopover="Al fer click a aquest boto, esborraràs el contingut de: Nom, Cognom i Missatge. Si nomes vols esborrar alguna part del missatge o missatge complet,
+            et recomanem seleccionar i esborrar-lo per tu mateix" triggers="mouseenter:mouseleave" popoverTitle="Compte!!">Neteja</button>
+    <br>
   </form>
 </div>
 <h1>Vista'ns!</h1>

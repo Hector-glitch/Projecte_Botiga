@@ -1,5 +1,6 @@
 import {Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
 import {UsuariService} from "../usuari.service";
+import {NgbNavModule} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-condicions',
@@ -10,9 +11,11 @@ export class CondicionsComponent {
   autenticat= this.usuariServei.autenticat;
   nomAutenticat: any;
   negre = true;
+  active = 1;
 
   // @ts-ignore
   @ViewChild('fons') fons: ElementRef;
+
   tancarSessio(){
     this.usuariServei.autenticat = false;
     this.autenticat= false;

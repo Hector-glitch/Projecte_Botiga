@@ -5,6 +5,7 @@ export interface Product {
   img: string;
   qty: number;
   cat: string;
+  rating: number;
 }
 
 export const products= [
@@ -14,7 +15,8 @@ export const products= [
     preu: 10.30,
     img: "http://172.16.8.1:3080/imatges/BolaDeDrac01.jpg",
     qty: 1,
-    cat: "Entreteniment"
+    cat: "Entreteniment",
+    rating: 0
   },
   {
     name:"Narnia",
@@ -22,7 +24,8 @@ export const products= [
     preu: 11.30,
     img: "http://172.16.8.1:3080/imatges/Narnia.jpg",
     qty: 1,
-    cat: "Entreteniment"
+    cat: "Entreteniment",
+    rating: 0
   },
   {
     name:"Boku no Hero Academia",
@@ -30,7 +33,8 @@ export const products= [
     preu: 7.55,
     img: "http://172.16.8.1:3080/imatges/BNHA.png",
     qty: 1,
-    cat: "Entreteniment"
+    cat: "Entreteniment",
+    rating: 0
   },
   {
     name:"Los pilares de la Tierra",
@@ -38,7 +42,8 @@ export const products= [
     preu: 11.30,
     img: "http://172.16.8.1:3080/imatges/PilaresTierra.png",
     qty: 1,
-    cat: "Entreteniment"
+    cat: "Entreteniment",
+    rating: 0
   },
   {
     name:"Guia Basica de Minecraft",
@@ -46,7 +51,8 @@ export const products= [
     preu: 15.89,
     img: "http://172.16.8.1:3080/imatges/GuiaMine.png",
     qty: 1,
-    cat: "Manuals"
+    cat: "Manuals",
+    rating: 0
   },
   {
     name:"La cocina de la abuela",
@@ -54,7 +60,8 @@ export const products= [
     preu: 18.30,
     img: "http://172.16.8.1:3080/imatges/LlibreCuina.png",
     qty: 1,
-    cat: "Manuals"
+    cat: "Manuals",
+    rating: 0
   },
   {
     name:"El señor de los anillos",
@@ -62,7 +69,8 @@ export const products= [
     preu: 17.95,
     img: "http://172.16.8.1:3080/imatges/SeñorAnillos.jpg",
     qty: 1,
-    cat: "Entreteniment"
+    cat: "Entreteniment",
+    rating: 0
   },
   {
     name:"Como provocar un incendio",
@@ -70,6 +78,7 @@ export const products= [
     preu: 9.49,
     img: "http://172.16.8.1:3080/imatges/ComoIncendiar.jpg",
     qty: 1,
-    cat: "Manuals"
+    cat: "Manuals",
+    rating: 0
   }
 ];

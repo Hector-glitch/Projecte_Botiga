@@ -79,12 +79,25 @@
   <input type="date" id="caduca" name="Caduca">
   <br>
   <label>Tria el tpius d'enviament:</label><br>
-  <input type="radio" id="opcio1" name="enviament" value="Normal">
-  <label for="opcio1">Normal</label><br>
-  <input type="radio" id="opcio2" name="enviament" value="Urgent">
-  <label for="opcio2">Urgent</label><br>
-  <input type="radio" id="opcio3" name="enviament" value="En el mateix dia">
-  <label for="opcio3">En el mateix dia</label>
+  <input type="radio" id="opcio1" name="enviament" value="Estàndard" (change)="actuEnviament('estandard')" >
+  <label for="opcio1">Estàndard</label><br>
+  <input type="radio" id="opcio2" name="enviament" value="Premium" [(ngModel)]="enviamentPremium" (change)="actuEnviament('premium')">
+  <label for="opcio2">Premium</label><br>
+  <input type="radio" id="opcio3" name="enviament" value="VIP" [(ngModel)]="enviamentVIP" (change)="actuEnviament('vip')">
+  <label for="opcio3">VIP</label>
+  <div name="DefinirData" *ngIf="enviamentPremium">
+  <input type="text" [(ngModel)]="model" ngbDatepicker #datepicker="ngbDatepicker">
+  <button (click)="datepicker.toggle()" type="button">
+    Data d'entrega
+  </button>
+  </div>
+  <div name="DefinirHora" *ngIf="enviamentVIP">
+    <input type="text" [(ngModel)]="model" ngbDatepicker #datepicker="ngbDatepicker">
+    <button (click)="datepicker.toggle()" type="button">
+      Data d'entrega
+    </button>
+    <ngb-timepicker [(ngModel)]="time" [meridian]="meridian"></ngb-timepicker>
+  </div>
   <h3>Preu total:</h3>
   <h2> {{ calcTotal() }} € </h2>
   <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">

@@ -15,7 +15,15 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HttpClientModule} from "@angular/common/http";
 import { PerfilComponent } from './perfil/perfil.component';
 import { CanviarpasswordComponent } from './canviarpassword/canviarpassword.component';
-import { NgHcaptchaModule } from 'ng-hcaptcha';
+import {
+  NgbInputDatepicker,
+  NgbNav, NgbNavContent,
+  NgbNavItem, NgbNavLink,
+  NgbNavOutlet, NgbPopover,
+  NgbRating,
+  NgbTimepicker
+} from "@ng-bootstrap/ng-bootstrap";
+import {NgHcaptchaModule} from "ng-hcaptcha";
 
 @NgModule({
   declarations: [
@@ -36,10 +44,20 @@ import { NgHcaptchaModule } from 'ng-hcaptcha';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NgbRating,
+    NgbTimepicker,
+    NgbNav,
+    NgbNavOutlet,
+    NgbInputDatepicker,
+    NgHcaptchaModule,
+    NgbNavItem,
+    NgbNavLink,
+    NgbNavContent,
+    NgbPopover,
     RouterModule.forRoot([
-        { path: 'products/:productId', component: CatalegComponent },
-        { path: 'cart', component: CistellaComponent },
-  ]),
+      {path: 'products/:productId', component: CatalegComponent},
+      {path: 'cart', component: CistellaComponent},
+    ]),
     AngularFireModule.initializeApp({
       apiKey: "AIzaSyCUXh-1oomV95HRDcmmtbOw83Tk9e8AiTk",
       authDomain: "book-net-eb5c1.firebaseapp.com",
@@ -52,8 +70,11 @@ import { NgHcaptchaModule } from 'ng-hcaptcha';
     NgHcaptchaModule.forRoot({
       siteKey: '8f6ae743-c8d0-4c3b-bb0d-f42684acfdbc',
       languageCode: 'ca',
+    }),NgHcaptchaModule.forRoot({
+      siteKey: '8f6ae743-c8d0-4c3b-bb0d-f42684acfdbc',
+      languageCode: 'ca',
     }),
-    ],
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

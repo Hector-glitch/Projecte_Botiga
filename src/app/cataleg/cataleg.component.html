@@ -47,11 +47,11 @@
 
   <ul>
     <li>
-      <input [checked]="false" [(ngModel)]="clicatE" (change)="catEntretenir()" id="entretenir" type="button"/>
+      <input [checked]="false" [(ngModel)]="clicatE" (change)="catEntretenir()" id="entretenir" type="checkbox"/>
       <label for="entretenir">Entreteniment</label>
     </li>
     <li>
-      <input [checked]="true" [(ngModel)]="clicatM" (change)="catManuals()"  id="Manuals" type="checkbox"/>
+      <input [checked]="false" [(ngModel)]="clicatM" (change)="catManuals()"  id="Manuals" type="checkbox"/>
       <label for="Manuals">Manuals</label>
     </li>
  </ul>
@@ -66,6 +66,7 @@
         <img src="{{product.img}}" alt="" class="img-pro">
         <h4>{{ product.name }} <br> {{ product.desc }}</h4>
         <h3>Preu: {{ product.preu}} €</h3>
+        <ngb-rating [(rate)]="product.rating" [max]="5"></ngb-rating>
       </div>
     </h3>
     <button class="BotoCompra" (click)="addToCart(product)">Comprar</button>
@@ -82,6 +83,7 @@
           <img src="{{product.img}}" alt="" class="img-pro">
           <h4>{{ product.name }} <br> {{ product.desc }}</h4>
           <h3>Preu: {{ product.preu}} €</h3>
+          <ngb-rating [(rate)]="product.rating" [max]="5"></ngb-rating>
         </div>
       </h3>
       <button class="BotoCompra" (click)="addToCart(product)">Comprar</button>

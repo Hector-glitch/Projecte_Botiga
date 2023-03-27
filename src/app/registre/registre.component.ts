@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {UsuariService} from "../usuari.service";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
+import {NgbModal, NgbModalConfig} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-registre',
@@ -20,6 +21,7 @@ export class RegistreComponent {
   telefon: any;
   correuTrobat: any;
   captchaVerificat = false;
+  mostrarModal= false;
 
   tancarSessio(){
     this.usuariServei.autenticat = false;
@@ -57,20 +59,26 @@ export class RegistreComponent {
         email: this.correu,
         password: this.passwd
       }).subscribe();
-      this.http.post<any>('http://localhost:3080/log',{
+      this.http.post<any>('http://172.16.8.1:3080/log',{
         log: 'registre',
         text: `${this.nom} s'ha registrat amb l'adreça de correu ${this.correu}`
       }).subscribe();
-      window.alert(`S'ha enviat un correu per verificar la seva compte.`)
+      this.mostrarModal = true;
       await this.router.navigate(['/login']);
     }
   }
 
-  constructor(private usuariServei: UsuariService,public router:Router, private http:HttpClient, public firebaseAuth: AngularFireAuth) {
+  constructor(private usuariServei: UsuariService,public router:Router, private http:HttpClient, public firebaseAuth: AngularFireAuth, config: NgbModalConfig, private modalService: NgbModal) {
     if(this.autenticat){
       this.nomAutenticat = this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Nom;
     }
+    config.backdrop = 'static';
+    config.keyboard = false;
   }
+  open({content}: { content: any }) {
+    this.modalService.open(content);
+  }
+
 
   ngOnInit(){}
 

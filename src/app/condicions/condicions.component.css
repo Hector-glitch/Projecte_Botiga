@@ -1,6 +1,17 @@
 body{
   color: white;
 }
+.nav-link {
+  color: white;
+}
+
+.nav-link:hover {
+  color: orange;
+}
+
+.nav-tabs {
+  border-bottom: 1px solid #dee2e6;
+}
 
 .canviarColor{
   background-color: white !important;

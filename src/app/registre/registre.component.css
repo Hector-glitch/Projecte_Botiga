@@ -49,8 +49,12 @@ form{
   margin: 0 auto;
   justify-content: center;
 }
-input:focus{
+input:focus {
   color: #dd801b;
   border-color: #dd801b;
 
+}
+
+.modal-body{
+  color: white;
 }
