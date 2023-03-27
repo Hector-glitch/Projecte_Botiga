@@ -54,7 +54,9 @@ input:focus {
   border-color: #dd801b;
 
 }
-
+.modal-title{
+  color:white;
+}
 .modal-body{
   color: white;
 }

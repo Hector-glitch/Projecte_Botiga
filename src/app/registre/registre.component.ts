@@ -63,7 +63,7 @@ export class RegistreComponent {
         log: 'registre',
         text: `${this.nom} s'ha registrat amb l'adreça de correu ${this.correu}`
       }).subscribe();
-      this.mostrarModal = true;
+      window.alert("S'ha enviat un correu de verificació.")
       await this.router.navigate(['/login']);
     }
   }
@@ -75,7 +75,7 @@ export class RegistreComponent {
     config.backdrop = 'static';
     config.keyboard = false;
   }
-  open({content}: { content: any }) {
+  open(content: any) {
     this.modalService.open(content);
   }
 
