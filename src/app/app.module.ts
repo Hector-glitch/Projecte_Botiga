@@ -24,6 +24,7 @@ import {
   NgbTimepicker, NgbModule
 } from "@ng-bootstrap/ng-bootstrap";
 import {NgHcaptchaModule} from "ng-hcaptcha";
+import {DatePipe} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -74,7 +75,9 @@ import {NgHcaptchaModule} from "ng-hcaptcha";
       siteKey: '8f6ae743-c8d0-4c3b-bb0d-f42684acfdbc',
     }), NgbModule,
   ],
-  providers: [],
+  providers: [
+    DatePipe,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

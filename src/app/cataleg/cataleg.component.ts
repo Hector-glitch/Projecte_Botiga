@@ -1,7 +1,9 @@
 import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
-import { Product, products } from '../products';
+import { Product} from '../products';
 import { CartService } from '../cistella.service';
 import {UsuariService} from "../usuari.service";
+import {HttpClient} from "@angular/common/http";
+import {ProducteserveiService} from "../producteservei.service";
 
 @Component({
   selector: 'app-cataleg',
@@ -9,12 +11,18 @@ import {UsuariService} from "../usuari.service";
   styleUrls: ['./cataleg.component.css','../../assets/css/Default.css']
 })
 
-export class CatalegComponent  {
+export class CatalegComponent implements OnInit {
   autenticat= this.usuariServei.autenticat;
   nomAutenticat: any;
-  products = products;
+  // @ts-ignore
+  products: Product[];
   clicatE: any;
   clicatM: any;
+ngOnInit():void {
+  this.producteservei.getProducts().subscribe(products => {
+    this.products = products;
+  });
+}
 
   // @ts-ignore
   @ViewChild('manual') manual: ElementRef;
@@ -40,7 +48,7 @@ export class CatalegComponent  {
     else(this.render.addClass(this.manual.nativeElement,'manu'))
   }
 
-  constructor(private usuariServei: UsuariService, private cartService: CartService, private render: Renderer2) {
+  constructor(private http: HttpClient,private usuariServei: UsuariService, private cartService: CartService, private render: Renderer2, private producteservei: ProducteserveiService) {
     if(this.autenticat){
       this.nomAutenticat = this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Nom;
     }
@@ -48,7 +56,7 @@ export class CatalegComponent  {
 
   addToCart(product: Product) {
     this.cartService.addToCart(product);
-    window.alert(`${product.name} s'ha afegit a la cistella.`);
+    window.alert(`${product.nom} s'ha afegit a la cistella.`);
   }
 
 }

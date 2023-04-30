@@ -61,11 +61,11 @@
 
 <div #entretenir>
   <div  *ngFor="let product of products" class="producte">
-    <div *ngIf="product.cat=='Entreteniment'">
+    <div *ngIf="product.categoria=='Entreteniment'">
     <h3>
       <div *ngIf="product">
-        <img src="{{product.img}}" alt="" class="img-pro">
-        <h4>{{ product.name }} <br> {{ product.desc }}</h4>
+        <img src="{{product.imatge}}" alt="" class="img-pro">
+        <h4>{{ product.nom }} <br> {{ product.descripcio }}</h4>
         <h3>Preu: {{ product.preu}} €</h3>
         <ngb-rating [(rate)]="product.rating" [max]="5"></ngb-rating>
       </div>
@@ -78,11 +78,11 @@
 
 <div #manual>
   <div  *ngFor="let product of products" class="producte">
-    <div *ngIf="product.cat=='Manuals'">
+    <div *ngIf="product.categoria=='Manuals'">
       <h3>
         <div *ngIf="product">
-          <img src="{{product.img}}" alt="" class="img-pro">
-          <h4>{{ product.name }} <br> {{ product.desc }}</h4>
+          <img src="{{product.imatge}}" alt="" class="img-pro">
+          <h4>{{ product.nom }} <br> {{ product.descripcio }}</h4>
           <h3>Preu: {{ product.preu}} €</h3>
           <ngb-rating [(rate)]="product.rating" [max]="5"></ngb-rating>
         </div>

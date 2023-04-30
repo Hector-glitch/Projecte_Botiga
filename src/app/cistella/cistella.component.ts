@@ -4,6 +4,7 @@ import { CartService } from '../cistella.service';
 import {UsuariService} from "../usuari.service";
 import {NgbCalendar, NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
 import {HttpClient} from "@angular/common/http";
+import { DatePipe } from '@angular/common';
 
 
 @Component({
@@ -24,8 +25,9 @@ export class CistellaComponent {
   nomComprador: any;
   cognomComprador: any;
   adrecaComprador: any;
+  dataCompra: any;
 
-  constructor(private usuariServei: UsuariService, private cartService: CartService, private formBuilder: FormBuilder, private calendar: NgbCalendar, private render: Renderer2,private http:HttpClient,) {
+  constructor(private usuariServei: UsuariService, private cartService: CartService, private formBuilder: FormBuilder, private calendar: NgbCalendar, private render: Renderer2,private http:HttpClient,private datePipe: DatePipe) {
     if(this.autenticat){
       this.nomAutenticat = this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Nom;
     }
@@ -37,6 +39,13 @@ export class CistellaComponent {
     this.nomAutenticat= 'null';
   }
   onSubmit(): void {
+    const data = new Date();
+    this.dataCompra = this.datePipe.transform(data, 'yyyy-MM-dd');
+    for (let i = 0;i<this.items.length;i++){
+      let query = `INSERT INTO projecta_botiga.registres_compra (nom, cognom, producte_comprat, oferta, quantitat, data_compra) VALUES (?,?,?,?,?,?)`;
+      let values = [this.nomComprador, this.cognomComprador, this.items[i].nom, false, this.items[i].quantitat, this.dataCompra];
+      this.http.post('http://172.16.8.1:3080/log/compraproductes', {query, values}).subscribe();
+    }
     this.http.post<any>('http://172.16.8.1:3080/log',{
       log: 'cistella',
       text: `${this.nomComprador} ${this.cognomComprador} ha fet una compra de ${JSON.stringify(this.items)}`
@@ -53,20 +62,20 @@ export class CistellaComponent {
   validateInput(event:any, i:number){
     const qty = +event.target.value;
     if (qty < 1){
-      event.target.value = this.items[i].qty;
+      event.target.value = this.items[i].quantitat;
       return;
     }
     this.QtyUpdated(qty, i)
   }
   private QtyUpdated(qty:number, i:number){
-    this.items[i].qty = qty;
+    this.items[i].quantitat = qty;
 
     this.cartService.setCartData(this.items)
   }
   public calcTotal():number {
     let total:number = 0;
     for(let item of this.items){
-      total += (item.qty * item.preu);
+      total += (item.quantitat * item.preu);
     }
     return total;
   }
