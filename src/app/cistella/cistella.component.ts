@@ -15,6 +15,7 @@ import { DatePipe } from '@angular/common';
 export class CistellaComponent {
   autenticat= this.usuariServei.autenticat;
   nomAutenticat: any;
+  //@ts-ignore
   items = this.cartService.getItems();
   checkoutForm = this.formBuilder.group({});
   model: NgbDateStruct;
@@ -42,11 +43,11 @@ export class CistellaComponent {
     const data = new Date();
     this.dataCompra = this.datePipe.transform(data, 'yyyy-MM-dd');
     for (let i = 0;i<this.items.length;i++){
-      let query = `INSERT INTO projecta_botiga.registres_compra (nom, cognom, producte_comprat, oferta, quantitat, data_compra) VALUES (?,?,?,?,?,?)`;
-      let values = [this.nomComprador, this.cognomComprador, this.items[i].nom, false, this.items[i].quantitat, this.dataCompra];
-      this.http.post('http://172.16.8.1:3080/log/compraproductes', {query, values}).subscribe();
+      let query = `INSERT INTO projecta_botiga.registres_compra (nom, cognom, oferta, quantitat, data_compra, id_producta_comprat) VALUES (?,?,?,?,?,?)`;
+      let values = [this.nomComprador, this.cognomComprador, false, this.items[i].quantitat, this.dataCompra, this.items[i].id];
+      this.http.post('http://localhost:3080/log/compraproductes', {query, values}).subscribe();
     }
-    this.http.post<any>('http://172.16.8.1:3080/log',{
+    this.http.post<any>('http://localhost:3080/log',{
       log: 'cistella',
       text: `${this.nomComprador} ${this.cognomComprador} ha fet una compra de ${JSON.stringify(this.items)}`
     }).subscribe();

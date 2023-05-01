@@ -40,7 +40,7 @@ export class PerfilComponent {
   }
 
   enviaDades() {
-    this.http.post<any>('http://172.16.8.1:3080/datausersdelete', {
+    this.http.post<any>('http://localhost:3080/datausersdelete', {
       Adreça: this.adrecaAutenticat,
       Cognoms: this.cognomsAutenticat,
       Correu: this.correuAutenticat,
@@ -53,7 +53,7 @@ export class PerfilComponent {
     this.adrecaAutenticat = this.adreca;
     this.telefonAutenticat = this.telefon;
 
-    this.http.post<any>('http://172.16.8.1:3080/datausers', {
+    this.http.post<any>('http://localhost:3080/datausers', {
       Adreça: this.adreca,
       Cognoms: this.cognoms,
       Correu: this.correu,

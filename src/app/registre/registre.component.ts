@@ -47,18 +47,18 @@ export class RegistreComponent {
     if (this.correuTrobat) {
       alert("Ja existeix un usuari registrat amb aquest correu!")
     } else {
-      this.http.post<any>('http://172.16.8.1:3080/datausers', {
+      this.http.post<any>('http://localhost:3080/datausers', {
         Adreça: this.adreca,
         Cognoms: this.cognoms,
         Correu: this.correu,
         Nom: this.nom,
         Telèfon: this.telefon
       }).subscribe();
-      this.http.post<any>('http://172.16.8.1:3080/signup', {
+      this.http.post<any>('http://localhost:3080/signup', {
         email: this.correu,
         password: this.passwd
       }).subscribe();
-      this.http.post<any>('http://172.16.8.1:3080/log',{
+      this.http.post<any>('http://localhost:3080/log',{
         log: 'registre',
         text: `${this.nom} s'ha registrat amb l'adreça de correu ${this.correu}`
       }).subscribe();
