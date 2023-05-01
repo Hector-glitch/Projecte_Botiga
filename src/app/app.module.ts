@@ -24,6 +24,7 @@ import {
   NgbTimepicker, NgbModule
 } from "@ng-bootstrap/ng-bootstrap";
 import {NgHcaptchaModule} from "ng-hcaptcha";
+import { GraficsComponent } from './grafics/grafics.component';
 import {DatePipe} from "@angular/common";
 
 @NgModule({
@@ -38,6 +39,7 @@ import {DatePipe} from "@angular/common";
     LoginComponent,
     PerfilComponent,
     CanviarpasswordComponent,
+    GraficsComponent,
   ],
   imports: [
     BrowserModule,
