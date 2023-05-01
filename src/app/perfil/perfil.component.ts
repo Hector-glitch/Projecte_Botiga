@@ -40,12 +40,14 @@ export class PerfilComponent {
   }
 
   enviaDades() {
-    this.http.post<any>('http://172.16.8.1:3080/datausersdelete', {
+    this.http.post<any>('http://localhost:3080/datausersdelete', {
       Adreça: this.adrecaAutenticat,
       Cognoms: this.cognomsAutenticat,
       Correu: this.correuAutenticat,
       Nom: this.nomAutenticat,
       Telèfon: this.telefonAutenticat,
+      //Afegim un camp que es rol que per defecte es client.
+      Rol: 'client'
     }).subscribe();
 
     this.nomAutenticat = this.nom;
@@ -53,12 +55,14 @@ export class PerfilComponent {
     this.adrecaAutenticat = this.adreca;
     this.telefonAutenticat = this.telefon;
 
-    this.http.post<any>('http://172.16.8.1:3080/datausers', {
+    this.http.post<any>('http://localhost:3080/datausers', {
       Adreça: this.adreca,
       Cognoms: this.cognoms,
       Correu: this.correu,
       Nom: this.nom,
-      Telèfon: this.telefon
+      Telèfon: this.telefon,
+      //Afegim un camp que es rol que per defecte es client.
+      Rol: 'client'
     }).subscribe();
     this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Nom = this.nomAutenticat;
     this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Cognoms = this.cognomsAutenticat;

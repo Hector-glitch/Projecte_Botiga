@@ -36,7 +36,7 @@ export class ContacteComponent{
     alert("No 'ha pogut verificar correctament el captcha!")
   }
   enviaFormulari(){
-    this.http.post<any>('http://172.16.8.1:3080/contacte',{
+    this.http.post<any>('http://localhost:3080/contacte',{
       nom: this.nomFormulari,
       correu: this.correuFormulari,
       missatge: this.missatgeFormulari

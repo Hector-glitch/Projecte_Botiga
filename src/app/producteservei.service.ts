@@ -10,6 +10,6 @@ export class ProducteserveiService {
 
   constructor(private http: HttpClient) { }
   getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>('http://172.16.8.1:3080/productes');
+    return this.http.get<Product[]>('http://localhost:3080/productes');
   }
 }

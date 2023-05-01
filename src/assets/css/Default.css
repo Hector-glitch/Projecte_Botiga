@@ -15,6 +15,16 @@
   margin-right: 20px;
   color: orange;
 }
+/*Aqui afegim el estil que tindra el desplegable*/
+#admin{
+  display: inline-flex;
+  float: right;
+  margin-top: 20px;
+  margin-right: 20px;
+  color: orange;
+}
+
+
 .respmenu{
   display: none;
 }

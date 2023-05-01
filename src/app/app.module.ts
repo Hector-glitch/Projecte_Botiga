@@ -25,6 +25,7 @@ import {
 } from "@ng-bootstrap/ng-bootstrap";
 import {NgHcaptchaModule} from "ng-hcaptcha";
 import {DatePipe} from "@angular/common";
+import { AfegiradminComponent } from './afegiradmin/afegiradmin.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import {DatePipe} from "@angular/common";
     LoginComponent,
     PerfilComponent,
     CanviarpasswordComponent,
+    AfegiradminComponent,
   ],
   imports: [
     BrowserModule,

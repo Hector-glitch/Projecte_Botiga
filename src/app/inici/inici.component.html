@@ -14,6 +14,13 @@
       <option routerLink="/perfil">El meu perfil</option>
       <option (click)="tancarSessio()">Tancar sessió</option>
     </select>
+    <!--Desplegable afegir administrador-->
+    <select *ngIf="root" name="admin" id="admin">
+      <option selected hidden>Gestio del lloc</option>
+      <option routerLink="/afegiradmin">Afageix un admin</option>
+      <option routerLink="/">Afegiex un producta</option>
+      <option routerLink="/">Visualitza els grafics</option>
+    </select>
   </div>
   <a routerLink="/" routerLinkActive="active"><img id="title" src="http://172.16.8.1:3080/imatges/LogoWeb2.png"></a>
 

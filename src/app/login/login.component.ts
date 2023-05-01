@@ -19,7 +19,7 @@ export class LoginComponent {
   correuTrobat: any;
 
   constructor(public router:Router, private usuariServei: UsuariService,private http:HttpClient, public firebaseAuth: AngularFireAuth) {
-      this.http.get<any>('http://172.16.8.1:3080/api/firebase').subscribe((document)=> {
+      this.http.get<any>('http://localhost:3080/api/firebase').subscribe((document)=> {
         this.usuariServei.arrClients = document;
       });
   }
