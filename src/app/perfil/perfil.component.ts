@@ -46,6 +46,8 @@ export class PerfilComponent {
       Correu: this.correuAutenticat,
       Nom: this.nomAutenticat,
       Telèfon: this.telefonAutenticat,
+      //Afegim un camp que es rol que per defecte es client.
+      Rol: 'client'
     }).subscribe();
 
     this.nomAutenticat = this.nom;
@@ -58,7 +60,9 @@ export class PerfilComponent {
       Cognoms: this.cognoms,
       Correu: this.correu,
       Nom: this.nom,
-      Telèfon: this.telefon
+      Telèfon: this.telefon,
+      //Afegim un camp que es rol que per defecte es client.
+      Rol: 'client'
     }).subscribe();
     this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Nom = this.nomAutenticat;
     this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Cognoms = this.cognomsAutenticat;
