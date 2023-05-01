@@ -65,8 +65,12 @@ export class AfegiradminComponent {
       if(this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Rol == 'root'){
         this.root = true;
       }
-      else{this.root=false
-      this.router.navigate(['/'])};
+      else{
+        this.root=false
+      this.router.navigate(['/']);
+      };
+    }else{
+      this.router.navigate(['/']);
     }
     config.backdrop = 'static';
     config.keyboard = false;

@@ -16,6 +16,7 @@ export class IniciComponent {
     this.usuariServei.autenticat = false;
     this.autenticat= false;
     this.nomAutenticat= 'null';
+    this.root=false;
   }
   constructor(private renderer: Renderer2,private usuariServei: UsuariService) {
     if(this.autenticat){

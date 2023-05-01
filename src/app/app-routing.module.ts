@@ -11,6 +11,7 @@ import {PerfilComponent} from "./perfil/perfil.component";
 import {CanviarpasswordComponent} from "./canviarpassword/canviarpassword.component";
 import {GraficsComponent} from "./grafics/grafics.component";
 import {AfegiradminComponent} from "./afegiradmin/afegiradmin.component";
+import {AfegirproducteComponent} from "./afegirproducte/afegirproducte.component";
 
 
 const routes: Routes = [
@@ -37,6 +38,8 @@ const routes: Routes = [
     component: GraficsComponent },
   { path: 'afegiradmin',
     component: AfegiradminComponent},
+  { path: 'nouproducte',
+    component: AfegirproducteComponent}
 
 
 ];

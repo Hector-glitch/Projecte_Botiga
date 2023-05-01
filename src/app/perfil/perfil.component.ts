@@ -23,6 +23,7 @@ export class PerfilComponent {
   telefon: any;
   autenticat = this.usuariServei.autenticat;
   edita = false;
+  rol: any;
 
   tancarSessio() {
     this.usuariServei.autenticat = false;
@@ -47,7 +48,7 @@ export class PerfilComponent {
       Nom: this.nomAutenticat,
       Telèfon: this.telefonAutenticat,
       //Afegim un camp que es rol que per defecte es client.
-      Rol: 'client'
+      Rol: this.rol
     }).subscribe();
 
     this.nomAutenticat = this.nom;
@@ -62,7 +63,7 @@ export class PerfilComponent {
       Nom: this.nom,
       Telèfon: this.telefon,
       //Afegim un camp que es rol que per defecte es client.
-      Rol: 'client'
+      Rol: this.rol
     }).subscribe();
     this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Nom = this.nomAutenticat;
     this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Cognoms = this.cognomsAutenticat;
@@ -88,6 +89,11 @@ export class PerfilComponent {
       this.adreca = this.adrecaAutenticat;
       this.correu = this.correuAutenticat;
       this.telefon = this.telefonAutenticat;
+      if(this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Rol == 'root'){
+        this.rol = 'root';
+      }else{
+        this.rol='client'
+      };
     } else {
       this.router.navigate(['/']);
     }

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import Chart from 'chart.js/auto';
+import {UsuariService} from "../usuari.service";
+import {Router} from "@angular/router";
 
 interface Datos {
   data_compra: string;
@@ -16,8 +18,21 @@ interface Datos {
 })
 export class GraficsComponent {
   dades: any[] = [];
+  autenticat= this.usuariServei.autenticat;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private usuariServei: UsuariService,public router:Router) {
+    if(this.autenticat){
+      this.nomAutenticat = this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Nom;
+      if(this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Rol == 'root'){
+        this.root = true;
+      }
+      else{
+        this.root=false
+        this.router.navigate(['/']);
+      };
+    }else{
+      this.router.navigate(['/']);
+    }
     this.http.get<Datos[]>('http://localhost:3080/dadescompres').subscribe((data: Datos[]) => {
       this.dades = data;
       this.renderChart();
@@ -103,7 +118,6 @@ export class GraficsComponent {
   }
 
 // Generar un color aleatorio para cada conjunto de datos
-  autenticat: boolean;
   nomAutenticat: any;
   root: any;
   private getRandomColor(): string {
@@ -114,6 +128,8 @@ export class GraficsComponent {
   }
 
   tancarSessio() {
-
+    this.usuariServei.autenticat = false;
+    this.autenticat= false;
+    this.nomAutenticat= 'null';
   }
 }
