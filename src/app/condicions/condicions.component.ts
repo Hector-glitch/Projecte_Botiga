@@ -15,6 +15,7 @@ export class CondicionsComponent {
 
   // @ts-ignore
   @ViewChild('fons') fons: ElementRef;
+  root: any;
 
   tancarSessio(){
     this.usuariServei.autenticat = false;

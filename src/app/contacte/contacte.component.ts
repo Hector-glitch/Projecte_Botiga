@@ -19,6 +19,7 @@ export class ContacteComponent{
   @ViewChild('omplenaCorreu') omplenaCorreu: ElementRef;
   // @ts-ignore
   @ViewChild('omplenaNom') omplenaNom: ElementRef;
+  root: any;
   tancarSessio(){
     this.usuariServei.autenticat = false;
     this.autenticat= false;

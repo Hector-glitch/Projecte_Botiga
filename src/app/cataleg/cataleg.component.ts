@@ -28,6 +28,7 @@ ngOnInit():void {
   @ViewChild('manual') manual: ElementRef;
   // @ts-ignore
   @ViewChild('entretenir') entretenir: ElementRef;
+  root: any;
   tancarSessio(){
     this.usuariServei.autenticat = false;
     this.autenticat= false;

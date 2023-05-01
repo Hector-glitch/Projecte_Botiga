@@ -27,6 +27,7 @@ export class CistellaComponent {
   cognomComprador: any;
   adrecaComprador: any;
   dataCompra: any;
+  root: any;
 
   constructor(private usuariServei: UsuariService, private cartService: CartService, private formBuilder: FormBuilder, private calendar: NgbCalendar, private render: Renderer2,private http:HttpClient,private datePipe: DatePipe) {
     if(this.autenticat){
