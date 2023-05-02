@@ -26,6 +26,8 @@ export class AfegiradminComponent {
     this.usuariServei.autenticat = false;
     this.autenticat= false;
     this.nomAutenticat= 'null';
+    this.root = false;
+    this.router.navigate(['/']);
   }
 
   async registrar() {
