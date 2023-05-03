@@ -28,6 +28,7 @@ import { GraficsComponent } from './grafics/grafics.component';
 import {DatePipe} from "@angular/common";
 import { AfegiradminComponent } from './afegiradmin/afegiradmin.component';
 import { AfegirproducteComponent } from './afegirproducte/afegirproducte.component';
+import { EliminaproducteComponent } from './eliminaproducte/eliminaproducte.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { AfegirproducteComponent } from './afegirproducte/afegirproducte.compone
     GraficsComponent,
     AfegiradminComponent,
     AfegirproducteComponent,
+    EliminaproducteComponent,
   ],
   imports: [
     BrowserModule,

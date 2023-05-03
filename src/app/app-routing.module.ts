@@ -12,6 +12,7 @@ import {CanviarpasswordComponent} from "./canviarpassword/canviarpassword.compon
 import {GraficsComponent} from "./grafics/grafics.component";
 import {AfegiradminComponent} from "./afegiradmin/afegiradmin.component";
 import {AfegirproducteComponent} from "./afegirproducte/afegirproducte.component";
+import {EliminaproducteComponent} from "./eliminaproducte/eliminaproducte.component";
 
 
 const routes: Routes = [
@@ -39,7 +40,9 @@ const routes: Routes = [
   { path: 'afegiradmin',
     component: AfegiradminComponent},
   { path: 'nouproducte',
-    component: AfegirproducteComponent}
+    component: AfegirproducteComponent},
+  { path: 'eliminaproducte',
+    component: EliminaproducteComponent}
 
 
 ];

@@ -20,6 +20,7 @@ export class AfegirproducteComponent {
   descripcio: any;
   preu: any;
   imatge: File | undefined;
+  enOferta: boolean = false;
   onFileSelected(event: Event): void {
     this.imatge = (event.target as HTMLInputElement).files?.[0];
   }
@@ -36,6 +37,8 @@ export class AfegirproducteComponent {
     formData.append('nom', this.nom);
     formData.append('descripcio', this.descripcio);
     formData.append('preu', this.preu.toString());
+    // @ts-ignore
+    formData.append('oferta', !!this.enOferta ? '1' : '0');
     formData.append('categoria', this.categoria);
     // @ts-ignore
     formData.append('imatge', this.imatge);
@@ -50,6 +53,7 @@ export class AfegirproducteComponent {
     this.preu = '';
     this.categoria = '';
     this.imatge = undefined;
+    this.enOferta = false;
 
 
 

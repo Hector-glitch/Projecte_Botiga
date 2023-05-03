@@ -71,9 +71,10 @@
     <div *ngIf="product.categoria=='Entreteniment'">
     <h3>
       <div *ngIf="product">
-        <img src="{{product.imatge}}" alt="" class="img-pro">
+        <img src="{{product.imatge}}" alt="" class="img-pro" title="Producte num {{product.id}}">
         <h4>{{ product.nom }} <br> {{ product.descripcio }}</h4>
         <h3>Preu: {{ product.preu}} €</h3>
+        <h3 *ngIf="product.oferta">OFERTA!</h3>
         <ngb-rating [(rate)]="product.rating" [max]="5"></ngb-rating>
       </div>
     </h3>
@@ -88,7 +89,7 @@
     <div *ngIf="product.categoria=='Manuals'">
       <h3>
         <div *ngIf="product">
-          <img src="{{product.imatge}}" alt="" class="img-pro">
+          <img src="{{product.imatge}}" alt="" class="img-pro" title="Producte num {{product.id}}">
           <h4>{{ product.nom }} <br> {{ product.descripcio }}</h4>
           <h3>Preu: {{ product.preu}} €</h3>
           <ngb-rating [(rate)]="product.rating" [max]="5"></ngb-rating>

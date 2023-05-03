@@ -7,4 +7,5 @@ export interface Product {
   quantitat: number;
   categoria: string;
   rating: number;
+  oferta: boolean;
 }
