@@ -45,7 +45,7 @@ export class CistellaComponent {
     this.dataCompra = this.datePipe.transform(data, 'yyyy-MM-dd');
     for (let i = 0;i<this.items.length;i++){
       let query = `INSERT INTO projecta_botiga.registres_compra (nom, cognom, oferta, quantitat, data_compra, id_producta_comprat) VALUES (?,?,?,?,?,?)`;
-      let values = [this.nomComprador, this.cognomComprador, false, this.items[i].quantitat, this.dataCompra, this.items[i].id];
+      let values = [this.nomComprador, this.cognomComprador, this.items[i].oferta, this.items[i].quantitat, this.dataCompra, this.items[i].id];
       this.http.post('http://localhost:3080/log/compraproductes', {query, values}).subscribe();
     }
     this.http.post<any>('http://localhost:3080/log',{

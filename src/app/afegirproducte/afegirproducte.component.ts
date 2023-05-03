@@ -4,7 +4,6 @@ import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {NgbModal, NgbModalConfig} from "@ng-bootstrap/ng-bootstrap";
-import {NgForm} from "@angular/forms";
 
 @Component({
   selector: 'app-afegirproducte',

@@ -6,7 +6,7 @@ import {Router} from "@angular/router";
 
 interface Datos {
   data_compra: string;
-  producte_comprat: string;
+  id_producta_comprat: number;
   quantitat: number;
   oferta: boolean;
 }
@@ -40,24 +40,28 @@ export class GraficsComponent {
   }
 
   renderChart() {
-    // Agrupar los datos por fecha y producto
+
     const groupedData = this.dades.reduce((result, d) => {
-      const key = `${d.data_compra}-${d.producte_comprat}`;
+      const key = `${d.data_compra}-${d.id_producta_comprat}`;
       if (!result[key]) {
         result[key] = {
-          label: d.producte_comprat,
-          data: [],
+          label: d.id_producta_comprat,
+          data: 0,
           backgroundColor: this.getRandomColor(),
         };
       }
-      result[key].data.push(d.quantitat);
+      result[key].data += d.quantitat;
       return result;
     }, {});
 
-    // Crear un conjunto de datos para cada grupo de datos
-    const datasets = Object.keys(groupedData).map(key => groupedData[key]);
+// Crear conjunt de dades per crear cada grup de dades
+    const datasets = Object.keys(groupedData).map(key => ({
+      label: groupedData[key].label,
+      data: [groupedData[key].data],
+      backgroundColor: groupedData[key].backgroundColor,
+    }));
 
-    // Configurar la gráfica de barras
+// Configurar el grafic de barras
     new Chart('grafic-ventes', {
       type: 'bar',
       data: {
@@ -68,56 +72,60 @@ export class GraficsComponent {
         responsive: true,
         scales: {
           y: {
+            ticks: {
+              stepSize: 10,
+            },
             stacked: false,
           },
           x: {
-            beginAtZero: true,
             stacked: false,
           },
         },
       },
     });
-    const groupedDataOferta = this.dades.reduce((result, d) => {
-      const key = `${d.data_compra}-${d.oferta}`;
-      if (!result[key]) {
-        result[key] = {
-          label: d.oferta ? 'En Oferta' : 'Cap Oferta',
+
+    const datasetsO = this.dades.reduce((groups, data) => {
+      if (!groups[data.oferta]) {
+        groups[data.oferta] = {
+          label: data.oferta ? 'Productos en oferta' : 'Productos sin oferta',
           data: [],
-          borderColor: d.oferta ? 'green' : 'red',
+          borderColor: this.getRandomColor(),
           fill: false,
         };
       }
-      result[key].data.push(d.quantitat);
-      return result;
-    }, {});
 
-    // Crear un conjunto de datos para cada grupo de datos
-    const datasetsOferta = Object.keys(groupedDataOferta).map(key => groupedDataOferta[key]);
+      const index = this.getUniqueDates().indexOf(data.data_compra);
+      groups[data.oferta].data[index] = data.quantitat;
+      return groups;
 
-    // Configurar la gráfica de líneas
+      }, );
+
     new Chart('grafic-oferta', {
       type: 'line',
       data: {
         labels: this.getUniqueDates(),
-        datasets: datasetsOferta,
+        datasets: datasets,
       },
       options: {
         responsive: true,
         scales: {
-          y: {
+          x: {
             beginAtZero: true,
+            ticks: {
+              stepSize: 10,
           },
         },
       },
+    },
     });
   }
 
-// Obtener una lista de todas las fechas únicas en los datos
+//
   private getUniqueDates(): string[] {
     return [...new Set(this.dades.map(d => d.data_compra))];
   }
 
-// Generar un color aleatorio para cada conjunto de datos
+//
   nomAutenticat: any;
   root: any;
   private getRandomColor(): string {
