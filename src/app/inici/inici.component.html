@@ -78,6 +78,12 @@
     </div>
   </div>
 </article>
+<div class = "APIInfoLlibre">
+  <h2>{{ book.title }}</h2>
+  <p>Author(s): {{ book.authors }}</p>
+  <p>Description: {{ book.description }}</p>
+  <img [src]="book.thumbnail" alt="Book Cover">
+</div>
 <br>
 <iframe class="carrusel" src="assets/html/Carrusel.html"></iframe>
 <footer>
