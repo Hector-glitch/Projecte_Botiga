@@ -29,6 +29,7 @@
     "ng-hcaptcha": "^2.1.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
+    "web3": "^1.10.0",
     "zone.js": "~0.12.0"
   },
   "devDependencies": {

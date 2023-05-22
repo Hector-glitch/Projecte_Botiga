@@ -2,6 +2,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "typeRoots": ["src/typings.d.ts"],
     "allowSyntheticDefaultImports": true,
     "strictPropertyInitialization": false,
     "baseUrl": "./",

@@ -6,6 +6,7 @@ import {UsuariService} from "../usuari.service";
 import {AngularFireAuth} from "@angular/fire/compat/auth";
 import {sendEmailVerification, user} from "@angular/fire/auth";
 import firebase from "firebase/compat";
+import Web3 from 'web3';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ export class LoginComponent {
   email: any;
   passwd: any;
   correuTrobat: any;
+  web3: any;
 
   constructor(public router:Router, private usuariServei: UsuariService,private http:HttpClient, public firebaseAuth: AngularFireAuth) {
       this.http.get<any>('http://localhost:3080/api/firebase').subscribe((document)=> {
@@ -42,7 +44,8 @@ export class LoginComponent {
               log: 'login',
               text: `Ha iniciat sessió un usuari amb l'adreça de correu ${this.email}`
             }).subscribe();
-            this.router.navigate(['/'])
+            this.initializeWeb3();
+            //this.router.navigate(['/'])
           }
         }
         if (!this.correuTrobat) {
@@ -55,6 +58,20 @@ export class LoginComponent {
       })
     if (!this.usuariServei.autenticat) {
       alert("Entrada denegada!\n" + errorMessage);
+    }
+  }
+  async initializeWeb3() {
+    if (window.ethereum) {
+      this.web3 = new Web3(window.ethereum);
+      try {
+        await window.ethereum.enable();
+        // Metamask is enabled and accessible
+      } catch (error) {
+        // User denied account access to Metamask
+        console.error('User denied account access to Metamask');
+      }
+    } else {
+      console.error('Please install Metamask');
     }
   }
 }

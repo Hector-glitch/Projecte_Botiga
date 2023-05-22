@@ -1,10 +1,11 @@
-import {Component, ElementRef, Renderer2, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, Renderer2, ViewChild} from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { CartService } from '../cistella.service';
 import {UsuariService} from "../usuari.service";
 import {NgbCalendar, NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
 import {HttpClient} from "@angular/common/http";
 import { DatePipe } from '@angular/common';
+import {MetaMaskInfoService} from "../meta-mask-info.service";
 
 
 @Component({
@@ -12,7 +13,7 @@ import { DatePipe } from '@angular/common';
   templateUrl: './cistella.component.html',
   styleUrls: ['./cistella.component.css','../../assets/css/Default.css']
 })
-export class CistellaComponent {
+export class CistellaComponent implements OnInit{
   autenticat= this.usuariServei.autenticat;
   nomAutenticat: any;
   //@ts-ignore
@@ -28,8 +29,15 @@ export class CistellaComponent {
   adrecaComprador: any;
   dataCompra: any;
   root: any;
+  currencyValue: number;
+  selectedCurrency: string;
 
-  constructor(private usuariServei: UsuariService, private cartService: CartService, private formBuilder: FormBuilder, private calendar: NgbCalendar, private render: Renderer2,private http:HttpClient,private datePipe: DatePipe) {
+  ngOnInit(): void {
+    this.getCurrencyValue();
+  }
+
+  constructor(private usuariServei: UsuariService,private cryptoService: MetaMaskInfoService, private cartService: CartService, private formBuilder: FormBuilder, private calendar: NgbCalendar, private render: Renderer2,private http:HttpClient,private datePipe: DatePipe) {
+    this.selectedCurrency = 'usd'; // Establece la moneda de destino predeterminada (USD)
     if(this.autenticat){
       this.nomAutenticat = this.usuariServei.arrClients.clients[this.usuariServei.posAutenticat].Nom;
     }
@@ -92,5 +100,20 @@ export class CistellaComponent {
       this.enviamentPremium = false;
       this.enviamentVIP = true;
     }
+  }
+  getCurrencyValue(): void {
+    const currencySymbol = 'crypto'; // Reemplaza 'crypto' por el símbolo de la criptomoneda que deseas obtener
+
+    this.cryptoService.getCurrencyValue(currencySymbol, this.selectedCurrency)
+      .then((value: number) => {
+        this.currencyValue = value;
+      })
+      .catch((error: any) => {
+        console.log(error);
+      });
+  }
+
+  onCurrencyChange(): void {
+    this.getCurrencyValue();
   }
 }
