@@ -6,7 +6,7 @@ import {NgbCalendar, NgbDateStruct} from "@ng-bootstrap/ng-bootstrap";
 import {HttpClient} from "@angular/common/http";
 import { DatePipe } from '@angular/common';
 import {MetaMaskInfoService} from "../meta-mask-info.service";
-
+import * as Web3 from 'web3';
 
 @Component({
   selector: 'app-cistella',
@@ -60,9 +60,37 @@ export class CistellaComponent implements OnInit{
       log: 'cistella',
       text: `${this.nomComprador} ${this.cognomComprador} ha fet una compra de ${JSON.stringify(this.items)}`
     }).subscribe();
-    // Process checkout data here
     this.items = this.cartService.clearItems();
     console.warn('Your order has been submitted', this.checkoutForm.value);
+    // @ts-ignore
+    const web3 = new Web3(Web3.givenProvider);
+    const recipientAddress = '0x93DC645f2838fE364d57cd046d9b26C10517c015';
+    const amountInEuros = this.calcTotal(); // Cantidad en euros que deseas enviar
+
+// Tasa de cambio estática euro a Ether
+    const euroToEtherRate = 500; // 1 Ether = 500 euros (solo como ejemplo, utiliza la tasa de cambio actual)
+
+// Cálculo de la cantidad en Ether
+    const amountInEther = (amountInEuros*100) / euroToEtherRate;
+
+// Convertir a wei
+    const amountInWei = web3.utils.toWei(amountInEther.toString(), 'ether');
+
+    web3.eth.sendTransaction({
+      from: web3.givenProvider.selectedAddress,
+      to: recipientAddress,
+      value: amountInWei
+    })
+      .on('transactionHash', (hash: string) => {
+        console.log('Transaction hash:', hash);
+      })
+      .on('confirmation', (confirmationNumber: number, receipt: any) => {
+        console.log('Confirmation number:', confirmationNumber);
+        // Realizar acciones adicionales después de que la transacción se confirme
+      })
+      .on('error', (error: any) => {
+        console.error('Error:', error);
+      });
     this.checkoutForm.reset();
   }
   delete(index: number) {

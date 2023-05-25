@@ -45,7 +45,7 @@ export class LoginComponent {
               text: `Ha iniciat sessió un usuari amb l'adreça de correu ${this.email}`
             }).subscribe();
             this.initializeWeb3();
-            //this.router.navigate(['/'])
+            this.router.navigate(['/'])
           }
         }
         if (!this.correuTrobat) {
