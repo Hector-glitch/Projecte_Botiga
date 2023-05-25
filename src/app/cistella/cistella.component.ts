@@ -60,37 +60,41 @@ export class CistellaComponent implements OnInit{
       log: 'cistella',
       text: `${this.nomComprador} ${this.cognomComprador} ha fet una compra de ${JSON.stringify(this.items)}`
     }).subscribe();
-    this.items = this.cartService.clearItems();
-    console.warn('Your order has been submitted', this.checkoutForm.value);
+
     // @ts-ignore
     const web3 = new Web3(Web3.givenProvider);
     const recipientAddress = '0x93DC645f2838fE364d57cd046d9b26C10517c015';
     const amountInEuros = this.calcTotal(); // Cantidad en euros que deseas enviar
-
-// Tasa de cambio estática euro a Ether
-    const euroToEtherRate = 500; // 1 Ether = 500 euros (solo como ejemplo, utiliza la tasa de cambio actual)
-
-// Cálculo de la cantidad en Ether
-    const amountInEther = (amountInEuros*100) / euroToEtherRate;
-
-// Convertir a wei
-    const amountInWei = web3.utils.toWei(amountInEther.toString(), 'ether');
-
-    web3.eth.sendTransaction({
-      from: web3.givenProvider.selectedAddress,
-      to: recipientAddress,
-      value: amountInWei
-    })
-      .on('transactionHash', (hash: string) => {
-        console.log('Transaction hash:', hash);
-      })
-      .on('confirmation', (confirmationNumber: number, receipt: any) => {
-        console.log('Confirmation number:', confirmationNumber);
-        // Realizar acciones adicionales después de que la transacción se confirme
-      })
-      .on('error', (error: any) => {
+    const apiUrl = 'https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=eur&api_key=BNB';
+    this.http.get(apiUrl)
+      .subscribe((data: any) => {
+        const bnbToEuroRate = data.bitcoin.eur;
+        // Utilitza el valor bnbToEuroRate per calcular la quantitat en Ether i enviar la transacció
+        const amountInEther = (amountInEuros * 100) / bnbToEuroRate;
+        const amountInWei = web3.utils.toWei(amountInEther.toString(), 'ether');
+        console.log(amountInWei);
+        console.log(amountInEther);
+        console.log(amountInEuros);
+        web3.eth.sendTransaction({
+          from: web3.givenProvider.selectedAddress,
+          to: recipientAddress,
+          value: amountInWei
+        })
+          .on('transactionHash', (hash: string) => {
+            console.log('Transaction hash:', hash);
+          })
+          .on('confirmation', (confirmationNumber: number, receipt: any) => {
+            console.log('Confirmation number:', confirmationNumber);
+            // Realitza accions addicionals després que la transacció s'hagi confirmat
+          })
+          .on('error', (error: any) => {
+            console.error('Error:', error);
+          });
+      }, (error: any) => {
         console.error('Error:', error);
       });
+    this.items = this.cartService.clearItems();
+    console.warn('Your order has been submitted', this.checkoutForm.value);
     this.checkoutForm.reset();
   }
   delete(index: number) {
@@ -130,7 +134,7 @@ export class CistellaComponent implements OnInit{
     }
   }
   getCurrencyValue(): void {
-    const currencySymbol = 'crypto'; // Reemplaza 'crypto' por el símbolo de la criptomoneda que deseas obtener
+    const currencySymbol = 'BNB'; // Reemplaza 'crypto' por el símbolo de la criptomoneda que deseas obtener
 
     this.cryptoService.getCurrencyValue(currencySymbol, this.selectedCurrency)
       .then((value: number) => {
