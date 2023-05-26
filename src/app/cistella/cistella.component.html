@@ -53,12 +53,7 @@
 <br>
 <br>
 </body>
-<p>Valor actual de la criptomoneda:</p>
-<p>
-  <input type="radio" name="currency" value="usd" [(ngModel)]="selectedCurrency" (change)="onCurrencyChange()"> USD
-  <input type="radio" name="currency" value="eur" [(ngModel)]="selectedCurrency" (change)="onCurrencyChange()"> EUR
-</p>
-<p>Valor: {{ currencyValue }} {{ selectedCurrency }}</p>
+
 
 <article>
 
@@ -118,6 +113,14 @@
   <h2> {{ calcTotal() }} € </h2>
     <button *ngIf="items.length !== 0"class="button" type="submit">Finalitzar compra</button>
   </form>
+  <div>
+    <p>Valor actual de la criptomoneda:</p>
+    <p>
+      <input type="radio" name="currency" value="usd" [(ngModel)]="selectedCurrency" (change)="onCurrencyChange()"> USD
+      <input type="radio" name="currency" value="eur" [(ngModel)]="selectedCurrency" (change)="onCurrencyChange()"> EUR
+    </p>
+    <p>Valor: {{ currencyValue }} {{ selectedCurrency }}</p>
+  </div>
 </aside>
 <footer>
   <iframe src="assets/html/Footer.html"></iframe>
